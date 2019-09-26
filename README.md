@@ -3,19 +3,12 @@
 
 ## Overleaf
 
-Also available on Overleaf: https://www.overleaf.com/read/nxypjnvhtjjf
+Also available on Overleaf: https://www.overleaf.com/10589160nbygdgjqkytn
 
-Easy for having other review it
+Overleaf is easy for having others review it.
 
-```
-git remote add overleaf https://git.overleaf.com/5d8cd282bc45c7000195bdbb
-```
+To pull changes from GitHub to Overleaf (or vice versa): `Menu -> GitHub`
 
-so that you can push to Overleaf with
-
-```
-git push overleaf
-```
 
 ## Building locally
 
@@ -23,7 +16,7 @@ git push overleaf
 make paper
 ```
 
-should work if you have tex installed
+should work if you have LaTeX installed
 
 
 
