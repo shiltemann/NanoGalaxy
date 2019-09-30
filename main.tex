@@ -22,23 +22,21 @@
 \title{NanoGalaxy: Nanopore tool suite in Galaxy}
 
 %%% Use the \authfn to add symbols for additional footnotes, if any. 1 is reserved for correspondence emails; then continuing with 2 etc for contributions.
-\author[1,\authfn{1},\authfn{2}]{First Author}
-\author[2,\authfn{1},\authfn{2}]{Second Author}
-\author[2]{Third Author}
-\author[2,\authfn{1}]{Fourth Author}
+\author[1,\authfn{1},\authfn{2}]{Willem~de~Koning}
+\author[2,\authfn{1},\authfn{2}]{Saskia~Hiltemann}
 
-\affil[1]{First Institution}
+\affil[1]{Erasmus Medical Center, Department of Pathology, Wytemaweg 80, 3015 CN, Rotterdam, The Netherlands}
 \affil[2]{Second Institution}
 
 %%% Author Notes
-\authnote{\authfn{1}abc@uni.edu; alphbeta@lab.edu}
+\authnote{\authfn{1}w.dekoning.1@erasmusmc.nl; saskiahiltemann@gmail.com}
 \authnote{\authfn{2}Contributed equally.}
 
 %%% Paper category
 \papercat{Paper}
 
 %%% "Short" author for running page header
-\runningauthor{First et al.}
+\runningauthor{de Koning and Hiltemann et al.}
 
 %%% Should only be set by an editor
 \jvolume{00}
@@ -50,44 +48,32 @@
 \begin{frontmatter}
 \maketitle
 \begin{abstract}
-The Abstract (250 words maximum) should be structured to include the following details: \textbf{Background}, the context and purpose of the study; \textbf{Results}, the main findings; \textbf{Conclusions}, brief summary and potential implications. Please minimize the use of abbreviations and do not cite references in the abstract.
+%%The Abstract (250 words maximum) should be structured to include the following details: \textbf{Background}, the context and purpose of the study; \textbf{Results}, the main findings; \textbf{Conclusions}, brief summary and potential implications. Please minimize the use of abbreviations and do not cite references in the abstract.
+
+\textbf{Background:} NanoGalaxy is a nanopore sequence analysis Galaxy toolkit for de novo assembly metagenomics genomes and plasmids from nanopore NGS data, including “end to end” workflows and web reporting for antimicrobial resistance (AMR) detection from clinical material. AMR has become one of the biggest threats to global health, food security and development. 
+
+\textbf{Results:} The user-friendly workflows enable the clinical researcher to analyze whole shotgun metagenomic data from both nanopore and Illumina NGS to give superior detection of pathogen resistance from both the genomic and plasmid level.  We demonstrate the utility of NanoGalaxy to determine the pathogenicity from clinical NGS data and present the results as an easy to read iReport
+
+\textbf{Conclusions:} NanoGalaxy contains tools that cover quality control, de novo assembly, species and assembly detection, AMR detection and reporting of the analysis. The goal is to create a user-friendly environment where researchers can choose their nanopore analysis tools or pipelines based on their research question, making their research reproducible.
 \end{abstract}
 
 \begin{keywords}
-Keyword1; keyword 2; keyword 3 (Three to ten keywords representing the main content of the article)
+Metagenomics; Galaxy; Reproducibility; Antibiotic resistance; Workflow; Plasmid
 \end{keywords}
 \end{frontmatter}
 
 %%% Key points will be printed at top of second page
-\begin{keypoints*}
-\begin{itemize}
-\item This is the first point
-\item This is the second point
-\item One last point.
-\end{itemize}
-\end{keypoints*}
+%\begin{keypoints*}
+%\begin{itemize}
+%\item This is the first point
+%\item This is the second point
+%\item One last point.
+%\end{itemize}
+%\end{keypoints*}
 
-\section{Introduction to this Template}
+\section{Background}
 
-\begin{epigraph}{Epigraph source name}
-This is the epigraph text, should you like to add one. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-\end{epigraph}
-
-This is the \LaTeX{} template for GigaScience journal manuscript submissions. \textbf{Please note that whilst this template provides a preview of the typeset manuscript for submission, it will not necessarily be the final publication layout.}
-
-There are important commands in the preamble that you will need to modify for your own manuscript. If you are using this template on Overleaf, please switch the editor to Source code mode to view them; or if you prefer to stay in the Rich Text view, click on the title in the Rich Text view to display the preamble code.
-
-Use the \verb|\journal{...}| command in the preamble so that the correct journal name, logo and colours are loaded automatically. \textbf{Only certain journals and options are supported at this time;} check with your journal's editorial office if your journal is supported.
-
-Alternatively you can re-define \verb|\jname|, \verb|\jlogo| and the \verb|jcolour| explicitly, though check with your journal's editorial office to confirm that this is appropriate.
-
-Specify your manuscript's category with the \verb|\papercat{...}| command in the preamble.
-
-See the sample code in the preamble for a sample of how author and affiliation information can be specified.
-
-Use later sections starting with `Background' on page~\pageref{sec:background} to write your manuscript. The remainder of this current section will provide some sample \LaTeX{} code for various elements you may want to include in your manuscript.
-
-\subsection{Sectional Headings}
+\subsection{Antimicrobial resistance}
 You can use \verb|\section{...}|, \verb|\subsection{...}| commands to add more sections and subsections to your manuscript. Further sectional levels are provided by \verb|\subsubsection|, \verb|\paragraph| and \verb|\subparagraph|.
 
 \subsection{Citations and References}
