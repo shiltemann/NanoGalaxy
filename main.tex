@@ -19,7 +19,7 @@
 %%% Flushend: You can add this package to automatically balance the final page, but if things go awry (e.g. section contents appearing out-of-order or entire blocks or paragraphs are coloured), remove it!
 % \usepackage{flushend}
 
-\title{NanoGalaxy: Nanopore tool suite in Galaxy}
+\title{NanoGalaxy: A Galaxy toolkit and workflows for nanopore and Illumina NGS de novo assembly for antibiotic gene resistance detection}
 
 %%% Use the \authfn to add symbols for additional footnotes, if any. 1 is reserved for correspondence emails; then continuing with 2 etc for contributions.
 \author[1,\authfn{1},\authfn{2}]{Willem~de~Koning}
@@ -72,182 +72,79 @@ Metagenomics; Galaxy; Reproducibility; Antibiotic resistance; Workflow; Plasmid
 %\end{keypoints*}
 
 \section{Background}
-According to the World Health Organization (WHO) and the Organisation for Economic Co-operation and Development (OECD), AMR has become one of the biggest threats to global health, food security and development \cite{OrganisationforEconomicCo-operationandDevelopment2017, WorldHealthOrganization2018}. The misuse of antibiotics in medical, veterinary and agricultural sectors contributes to the rise of antibiotic resistant pathogens. An increase in AMR may ultimately lead to an era where common infections could be lethal again. It is suspected that around 50.000 lives per year are lost due to AMR infections within the USA and Europe \cite{Simlai2016}. AMR infections are expected to increase, reaching 10 million deaths per year by 2050 \cite{ONeil2014}. To prevent this, AMR detection in samples (from all organisms) needs to be faster and be able to be done at the subject’s site.
+According to the World Health Organization (WHO) and the Organisation for Economic Co-operation and Development (OECD), AMR has become one of the biggest threats to global health, food security and development \cite{OrganisationforEconomicCo-operationandDevelopment2017, WorldHealthOrganization2018}. The misuse of antibiotics in medical, veterinary and agricultural sectors contributes to the rise of antibiotic resistant pathogens. An increase in AMR may ultimately lead to an era where common infections could be lethal again. It is suspected that around 50.000 lives per year are lost due to AMR infections within the USA and Europe \cite{Simlai2016}. AMR infections are expected to increase, reaching 10 million deaths per year by 2050 \cite{ONeil2014}. To prevent this, AMR detection in samples (from all organisms) needs to be faster and be able to be done at the subject’s site. 
 
+Due to the large amount of data created by NGS sequencing it is a complex, difficult to reproduce and computationally intensive analysis. Hence, NGS sequence data must be processed by refined workflows which can requisite bioinformatics skills [5]. Each step of the analysis may require a set of different tools or software, for example de novo assembly is done through alignment, assembly and polishing tools which all require multiple parameters. Designed for pairwise alignment Minimap2 cannot be used as standalone for de novo assembly, therefore miniasm and racon are also used. This makes it more complex as they are command-line tools, which require extensive computational resources. 
 
 \subsection{Antimicrobial resistance}
-You can use \verb|\section{...}|, \verb|\subsection{...}| commands to add more sections and subsections to your manuscript. Further sectional levels are provided by \verb|\subsubsection|, \verb|\paragraph| and \verb|\subparagraph|.
+Some bacteria possess natural resistance, known as ‘insensitivity’ [6]. Changes in the environment can also contribute to bacterial resistance. Multidrug-resistant pathogens have clinical relevance, and can be attributed to mutations in the bacteria [7]. Mutations within the 23 s rRNA are examples of mutations that lead to resistance, as it lies within the most common binding site for antibiotics to inhibit transcription and translation [8]. Another mechanism to inactivate antibiotics is the addition of a chemical group to the antibiotics, carried out by an enzyme [9]. Other mechanisms of resistance, as beta-lactamases, permeability and porin deficiency, membrane pumps and acquired ligases, are shown in Figure 1.
 
-\subsection{Citations and References}
-Use the \verb|num-refs| document class option for numerical citations, and \verb|alph-refs| option for author-year citations.
-Use the \verb|\citep| command for parenthetical citations, and \verb|\citet| command for text citations (when using \verb|alpha-refs|).
-This is a citation: \citep{Fan:2004} and here are two more: \citep{Cox:1972,Hear:Holm:Step:quan:2006}.
+The use of antibiotics as treatment for bacterial, yeast or parasitic infections leads to the death of non-resistant pathogens, and thereby creates a resistance selection of treated pathogens [11]. Microbial species maintain their resistance not only by passing it to their progeny, but through the ability to transfer genes between species, known as horizonal gene transfer [12]. There are three main types of horizontal gene transfer: mobile genetic elements (Figure 2A), integrons (Figure 2B) and bacterial conjugation (Figure 2C). Mobile genetic elements (MGEs) are genetic material that move around in a genome and are able to transfer into another specie [13]. Integrons are chromosomal elements that carry a variety of cassettes containing genes mostly related to AMR, with mobilisation into plasmids promoted by transposons [14]. The transfer of plasmids mostly occurs through bacterial conjugation where the genetic material is transferred by cell-to-cell contact [15]. All these transfers of genetic material give pathogens the ability to adapt and survive antibiotic treatment.
 
-\begin{quote}
-This is a quote. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-\end{quote}
+\subsection{Detection of antimicrobial resistance}
+Detection of resistant bacteria provides vital information for infection control measures. Therefore, the method for determination of AMR is important and progressed with new innovations.  One of the oldest techniques is hybridization, which uses the properties of nucleotide pairing. The sample DNA is split into a single strand and combines with a single-stranded probe. After binding the target, the AMR gene probe can hybridize (Ivnitski et al., 2003). Another common technique is PCR. PCR involves cycles of heating the DNA sample for denaturing, annealing of the primers, and elongation of the primers by a thermostable DNA polymerase (Mullis  Faloona, 1987). A newer technique based on hybridization is a DNA array. In contrast to the standard hybridization, a large collection of probes is bound to a solid surface. This makes it possible to test many different probes at the same time (Pease et al., 1994). The conventional methods for identification, as previously outlined, involve culturing and can take a few days or weeks to complete (Quick et al., 2015). Moreover, not all species are susceptible to laboratory-based culturing (Mitsuhashi et al., 2017). Therefore, when DNA-sequencing technology is used, it reduces the sample-to-result time. Illumina sequencing is the most used sequencing method, but has difficulties identifying repetitive insertion sequences usually found flanking the horizontally acquired genes often associated with AMR (Ashton et al., 2014). Thus, the use of Nanopore sequences is proposed. The advantage of using nanopores long sequences is the ability to achieve the structure of the DNA while being able to detect repetitive regions. The disadvantage of Nanopore is the high error rate. By combining the two sequence methods, the strengths of both tests can help overcome these problems.
 
-\begin{itemize}
-\item This is a bullet list.
-\item Another point.
-\item A third point.
-\end{itemize}
+\section{Results}
+Toolkit and workflows
+The incorporation of the Nanopore tools result in the toolkit, NanoGalaxy, containing diverse
+applications for the analyses of Nanopore sequences. The tools available in the toolkit are shown in
+Figure 4 and outlined in Appendix I: NanoGalaxy tools.
 
-This\footnote{This is the footnote text. This is the footnote text. This is the footnote text. This is the footnote text. This is the footnote text.} is a footnote. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+Minimap2/Miniasm/Racon workflow (PRIMUL)
+The workflow comparable to PRIMUL is shown in Figure 5. In which Minimap2, Miniasm and racon
+are used to assemble the genomes, Staramr for resistance gene detection, PlasFlow and Bandage for
+Species and plasmid determination and NanoPlot for quality assessment.
 
-\begin{itemize}
-\item This is a numbered list.
-\item Another point.
-\item A third point.
-\end{itemize}
+The outcome of the pipeline compared to the paper is shown in Appendix IV: Results
+Minimap2/Miniasm/Racon workflow. 19 out of 21 plasmids are recovered with an average identity
+of 97.76\%. All the plasmids are recognised as plasmid. The number of resistance genes is higher than
+found by R. Li et al., 2018.
+Unicycler workflow
+The workflow recommended by the Unicycler developers is shown in Figure 6. In which Trim Galore!,
+Porechop and Filtlong are used for quality trimming, Unicycler for de novo assembly, Staramr for
+resistance gene detection and bandage for plasmid visualization.
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+The Assembly graphs, Table 2, are compared to the results from Wick et al., 2017, see Appendix V:
+Results Wick et al., 2017. The Illumina-only graphs show an unclear visualization of plasmids, where
+Nanopore-only is already able to achieve the structure of Plasmids. The combination of both
+sequence techniques gives the clearest view of plasmids and show the same result as shown by Wick
+et al., 2017. A histogram of the read lengths is shown to describe the data used as input.
 
+Report
+The results from both workflows are summarized in a report using iReport, see Figure 7. iReport is a
+reporting tool for Galaxy that allows users to create interactive HTML reports directly from the
+Galaxy UI, with the ability to combine different outputs from the tools used in NanoGalaxy
+(Hiltemann et al., 2014).
 
-\subsubsection{This is a 3rd level heading}
-
-Use \verb|\subsubsection| to get a 3rd level heading.
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-
-
-\paragraph{This is a 4th level heading}
-
-Use \verb|\paragraph| to get a 4th level heading.
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-
-\subparagraph{This is a 5th level heading}
-
-Use \verb|\subparagraph| to get a 5th level heading.
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-
-
-\subsection{Figures and Tables}
-Figures and tables can be added with the usual \verb|figure| and \verb|table| environments, e.g.~Figure \ref{fig:example} and Table \ref{tab:example}. Use \verb|figure*| and \verb|table*| if you need a two-column wide figure or table, as in Figure \ref{fig:example:wide} and Table \ref{tab:example:wide}.
-
-If you have a very wide table or figure, you can use \texttt{sidewaystable} or \texttt{sidewaysfigure}, as in Table \ref{tab:example:sideways}: this will be rotated sideways and occupy a \emph{single column} on its own.
-
-If your table or figure is both wide and tall (so it wouldn't fit well in a single column with \texttt{sidewaystable} or \texttt{figure}),
-you can use \verb|table| or \verb|figure| inside a \verb|landscape| environment for a full-page landscaped alternative. A page break will be inserted \emph{immediately before and after} the \verb|landscape| environment (Table \ref{tab:example:landscape}), so you'll need to carefully position it in a suitable location in your manuscript.
-
-\begin{figure}[bt!] %% preferably at bottom or top of column
-\centering
-\includegraphics[width=\linewidth]{example-image}
-\caption{An example figure}\label{fig:example}
-\end{figure}
-
-\begin{table}[bt!]
-\caption{An example table.}\label{tab:example}
-\begin{tabular}{l r l}
-\toprule
-Item & Quantity & Notes\\
-\midrule
-Widgets & 42 & Over-supplied\textsuperscript{*} \\
-Gadgets & 13 & Under-supplied \\
-\bottomrule
-\end{tabular}
-\begin{tablenotes}
-\item This is a table note.
-\item \textsuperscript{*}Another note.
-\end{tablenotes}
-\end{table}
-
-
-\subsection{Some Mathematics Sample}
-
-Let $X_1, X_2, \ldots, X_n$ be a sequence of independent and identically distributed random variables with $\text{E}[X_i] = \mu$ and $\text{Var}[X_i] = \sigma^2 < \infty$, and let
-%
-\begin{equation}
-S_n = \frac{X_1 + X_2 + \cdots + X_n}{n}
-      = \frac{1}{n}\sum_{i}^{n} X_i
-\end{equation}
-%
-denote their mean. Then as $n$ approaches infinity, the random variables $\sqrt{n}(S_n - \mu)$ converge in distribution to a normal $\mathcal{N}(0, \sigma^2)$.
-
-
-\section{Background}
-\label{sec:background}
-
-The background section should be written in a way that is accessible to researchers without specialist knowledge in that area and must clearly state---and, if helpful, illustrate---the background to the research and its aims. The section should end with a brief statement of what is being reported in the article.
-
-
-\section{Data Description}
-
-A statement providing background and purpose for collection of these data should be presented for readers without specialist knowledge in that area. A brief description of the protocol for data collection, data curation and quality control, as well as potential uses should be included, as well as outlining how the data can be accessed if it is not deposited in our repository.
-
-\begin{figure*}%[b!]  %% Add a [b!] if you prefer the wide image to be at the bottm of the page
-\centering
-\includegraphics[width=.7\textwidth]{example-image}
-\caption{An example wide figure. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-}\label{fig:example:wide}
-\end{figure*}
-
-
-\section{Analyses}
-
-This section should provide details of all of the experiments and analyses that are required to support the conclusions of the paper. The authors should make clear the goal of each analysis and state the basic findings.
-
-
-\begin{table*}[bt!]
-\caption{Automobile land speed records (GR 5-10)}\label{tab:example:wide}
-% Use "S" column identifier (from siunitx) to align on decimal point.
-% Use "L", "R" or "C" column identifier for auto-wrapping columns with tabularx.
-\begin{tabularx}{\linewidth}{S l l l r L}
-\toprule
-{Speed (mph)} & {Driver} & {Car} & {Engine} & {Date} & {Extra comments}\\
-\midrule
-407.447     & Craig Breedlove & Spirit of America          & GE J47    & 8/5/63  & (Just to demo a full-width table with auto-wrapping long lines) \\
-413.199     & Tom Green       & Wingfoot Express           & WE J46    & 10/2/64  \\
-434.22      & Art Arfons      & Green Monster              & GE J79    & 10/5/64  \\
-468.719     & Craig Breedlove & Spirit of America          & GE J79    & 10/13/64 \\
-526.277     & Craig Breedlove & Spirit of America          & GE J79    & 10/15/65 \\
-536.712     & Art Arfons      & Green Monster              & GE J79    & 10/27/65 \\
-555.127     & Craig Breedlove & Spirit of America, Sonic 1 & GE J79    & 11/2/65  \\
-576.553     & Art Arfons      & Green Monster              & GE J79    & 11/7/65  \\
-600.601     & Craig Breedlove & Spirit of America, Sonic 1 & GE J79    & 11/15/65 \\
-622.407     & Gary Gabelich   & Blue Flame                 & Rocket    & 10/23/70 \\
-633.468     & Richard Noble   & Thrust 2                   & RR RG 146 & 10/4/83  \\
-763.035     & Andy Green      & Thrust SSC                 & RR Spey   & 10/15/97\\
-\bottomrule
-\end{tabularx}
-
-\begin{tablenotes}
-\item Source is from this website: \url{https://www.sedl.org/afterschool/toolkits/science/pdf/ast_sci_data_tables_sample.pdf}
-\end{tablenotes}
-\end{table*}
-
+Training manual
+To provide end users with the ability to use NanoGalaxy I developed an online training manual
+(https://galaxyproject.github.io/training-material/topics/sequenceanalysis/tutorials/nanopore/tutorial.html). This manual demonstrates the use of the tools for
+Minimap2/Miniasm/Racon assembly and provides an end to end workflows for the
+Minimap2/Miniasm/Racon workflow.
 
 \section{Discussion}
+The results from both workflows are promising and show that they can reproduce the outcomes of
+the source, see Appendix IV: Results Minimap2/Miniasm/Racon workflow and Appendix V: Results .
+The Minimap2/Miniasm/Racon workflow is a fast way to assemble genomes but lacks the ability to
+scan for single nucleotide polymorphisms (SNPs). This is because Nanopore sequencing has a high
+error rate. In the future, this could be improved by newer technologies and be able to scan for AMR
+within a few hours depending on the size of input. The contig identity is not the same as found by R.
+Li et al., 2018, but this could be a consequence of using other tools. Whether the results are better
+or worse, cannot be concluded without further research. The total number of resistance genes
+detected by the workflow is higher than mentioned by R. Li et al.. This could indicate that the
+addition of PointFinder makes it possible to detect AMR more precisely. The Unicycler workflow
+combines the best features of both sequencing methods and therefore can be used for SNP
+detection and structure determination. The drawback of the workflow is that the running time
+increases. The assembly graphs show, as Wick et al., 2017, that for recreation of the structure it is
+necessary to use Nanopore reads. For future purposes both workflows could be combined, or tools
+can be used as a single instance. This makes it possible to achieve the information desired by the
+researcher. Although Galaxy is a user-friendly environment, it would be beneficial to develop
+another user interface to facilitate use. For validation the workflows need to be compared to
+alternative applications. Canu is, for example, an alternative for the assembly, but is a time taking
+process. Therefore, it was not feasible to do the validation in the project.
 
-The discussion should spell out the major conclusions and interpretations of the work, including some explanation on the importance and relevance of the dataset and analysis. It should not be restatement of the analyses done and their basic conclusions. The discussion section can end with a concluding paragraph that clearly states the main conclusions of the research along with directions for future work. Summary illustrations can be included.
-
-\begin{sidewaystable}
-\caption{Automobile land speed records (GR 5-10). This is the same table as before, but rotated sideways.}
-\label{tab:example:sideways}
-% Use "S" column identifier (from siunitx) to align on decimal point.
-% Use "L", "R" or "C" column identifier for auto-wrapping columns with tabularx.
-\begin{tabularx}{\linewidth}{S l l l r L}
-\toprule
-{Speed (mph)} & {Driver} & {Car} & {Engine} & {Date} & {Extra comments}\\
-\midrule
-407.447     & Craig Breedlove & Spirit of America          & GE J47    & 8/5/63  & (Just to demo a full-width table with auto-wrapping long lines) \\
-413.199     & Tom Green       & Wingfoot Express           & WE J46    & 10/2/64  \\
-434.22      & Art Arfons      & Green Monster              & GE J79    & 10/5/64  \\
-468.719     & Craig Breedlove & Spirit of America          & GE J79    & 10/13/64 \\
-526.277     & Craig Breedlove & Spirit of America          & GE J79    & 10/15/65 \\
-536.712     & Art Arfons      & Green Monster              & GE J79    & 10/27/65 \\
-555.127     & Craig Breedlove & Spirit of America, Sonic 1 & GE J79    & 11/2/65  \\
-576.553     & Art Arfons      & Green Monster              & GE J79    & 11/7/65  \\
-600.601     & Craig Breedlove & Spirit of America, Sonic 1 & GE J79    & 11/15/65 \\
-622.407     & Gary Gabelich   & Blue Flame                 & Rocket    & 10/23/70 \\
-633.468     & Richard Noble   & Thrust 2                   & RR RG 146 & 10/4/83  \\
-763.035     & Andy Green      & Thrust SSC                 & RR Spey   & 10/15/97\\
-\bottomrule
-\end{tabularx}
-
-\begin{tablenotes}
-\item Source is from this website: \url{https://www.sedl.org/afterschool/toolkits/science/pdf/ast_sci_data_tables_sample.pdf}
-\end{tablenotes}
-\end{sidewaystable}
+Conclusion
+A user friendly Nanopore sequence analysis toolkit is created, including “end-to-end” workflows. This includes a fast and accurate workflow combining Minimap2, Miniasm and Racon plus a hybrid workflow for de novo assembly of plasmids and genomes, and for the detection of antimicrobial resistance genes using the best features of Illumina and Nanopore NGS. NanoGalaxy is validated with multi-plasmid assembly and resistance genes detection using the data from R. Li et al., 2018. Furthermore, the hybrid workflow is validated with the data from Wick et al.. The NanoGalaxy toolkit is now under field testing with collaborators by John Hays (EMC) and Peter van Baarlen (WUR). NanaoGalaxy is available from https://bioinf-galaxian.erasmusmc.nl/galaxy/. And the associated online training is available from https://galaxyproject.github.io/training-material/topics/sequence-analysis/tutorials/nanopore/tutorial.html.
 
 
 \section{Potential implications}
@@ -257,12 +154,33 @@ Authors should provide some additional comments about potential, more broad-rang
 Explicit personal opinions by the authors are permitted, but they should be made clear as such. References or related information to support the propositions should be included. These section should focus on work that can be done within the foreseeable future and specifically using the information within the manuscript, not provide speculation on how it will relate to far-reaching goals of the research area.
 
 \section{Methods}
+Minimap2
+Many assembly methods are designed for accurate and short reads, but not suitable for Nanopore reads. Nanopore reads have relatively high error rates and are long (Chu et al, 2017; de Lannoy et al., 2017; Koren et al., 2013; Magi et al., 2017). Overlap-Layout-Consensus (OLC) algorithms are shown to perform better, compared to de Bruijn graphs, with those reads (Z. Li et al., 2012). OLC-algorithms find the common sequence between two reads. Minimap2 is a commonly used state-of-the-art tool for this step (H. Li, 2016). Minimap2 partitions the reads into k-mers and finds the minimum representative set of k-mers and creates a hash table containing this set of minimizers. This hash table is used to efficiently find overlaps between two or a set of reads (H. Li, 2018).
+Miniasm
+Miniasm constructs a draft assembly from uncorrected read overlaps computed by Minimap2, while skipping the error-correction step. By skipping this step, it lowers the computational cost, but accuracy hereby relays directly on the accuracy of the reads. Further polishing is therefore executed by Racon.
+Racon
+The aim of Racon is to get a consensus sequence by constructing partial order alignment graphs. The sequences are divided in segments, after which Racon tries to find the best alignment. Multiple iterations of Racon might be needed to achieve a higher accuracy (Lee et al., 2002; Vaser et al., 2017). 
+NanoPlot
+NanoPlot can be used to produce informative quality control graphs (De Coster et al., 2018). Depending on the input data, it creates different outputs, as seen in Table 1. This gives a better insight on the data being dealt with.
+Staramr
+Staramr (*AMR) scans contigs against both the ResFinder (Zankari et al., 2012) and PointFinder (Zankari et al., 2017) and reports the detected antimicrobial resistance genes. ResFinder uses BLAST for identification of antimicrobial resistance genes. The ResFinder database contains over 1400 different resistance genes and is continuously updated as new resistance genes are identified. PointFinder is like ResFinder but instead of full genes, contains a database for detection of chromosomal point mutations associated with AMR.
+Unicycler tools
+Due to the disadvantages and advantages of both long and short reads, it would be ideal to use both. Unicylcer combines both types of data to produce a complete genome assembly with high accuracy in structure and sequence (Wick, Judd, Gorrie,  Holt, 2017b). In case of antimicrobial resistance, it is necessary to detect the plasmid structure, where mutations could be missed with only long reads. The proposed pipeline for the hybrid assembly contains other tools for preparation of the data. These tools are also incorporated in Galaxy. Furthermore, Bandage is included to visualise the assembly graphs created by Miniasm. It gives a graphical overview of the assembly structure. As last, PlasFlow is added to Galaxy to give a prediction of the structure and organisms related to the contigs.
+Trim Galore!
+Trim Galore! automatically trims for quality and adapters with some added functionality to remove biased methylation positions of sequence files. This can be used to trim the Illumina reads to achieve more accurate assembly. The first step of Trim Galore! is to trim low-quality base calls from the 3' end of the reads before adapter removal using FASTQC. Cutadapt is used to remove adapter sequences from the 3’ end of reads.
+Porechop
+To remove the adapters from the Nanopore reads, Porechop is used. Adapters on the ends of reads are trimmed off, and when a read has an adapter in its middle, it is treated as chimeric and chopped into separate reads. Porechop performs thorough alignments to effectively find adapters, even at low sequence identity.
+Filtlong
+Filtlong is a tool for filtering long reads by quality. It can take a set of long reads and produce a smaller, better subset. It uses both read length (longer is better) and read identity (higher is better) when choosing which reads pass the filter.
+Unicycler
+Unicycler is an assembly pipeline for bacterial genomes (Wick et al., 2017b). It can assemble Illumina-only read sets, functioning as a SPAdes-optimiser. It can also assemble long-read-only sets (PacBio or Nanopore) by running a Miniasm+Racon pipeline. For the best possible assemblies, give it both Illumina reads and long reads, and conducts a hybrid assembly.
+Bandage
+Bandage is a program for visualizing de novo assembly graphs by displaying connections, which are not present in the contigs file. Assemblies of whole genomes can be difficult to complete if repeated sequences occur in chromosomes or plasmids. Repeated sequences cause distinctive structures in the assembly graph, limiting contig length. Bandage’s visualization of the assembly graph makes it easy to identify the problematic parts of assemblies (Wick et al., 2015).
 
-The methods section should include the design of the study, the type of materials involved, a clear description of all comparisons, and the type of analysis used, to enable replication of the work. Ease of reproducibility is one of the key criteria on which reviewers will be asked to comment, so we strongly advocate the use of the reporting checklists recommended by the \href{https://biosharing.org/}{BioSharing} network and workflow management systems such as \href{https:/galaxyproject.org/}{Galaxy} and \href{http://www.myexperiment.org/home}{MyExperiment} and container systems such as \href{https://www.docker.com/}{Docker}, to save the details of the methods to encourage reproducibility as well as conciseness, is also strongly encouraged. Our \href{http://gigadb.org/}{\textit{Giga}DB repository}{} and \href{http://galaxy.cbiit.cuhk.edu.hk/}{GigaGalaxy} server can also be used to archive data, workflows and snapshots of the code with an accompanying DOI. Our \href{https://github.com/gigascience/papers}{GitHub page} can also be used to host a dynamic forkable version of the code if the authors have not used a code repository themselves.
+PlasFlow
+PlasFlow is a set of scripts used for predicting plasmid sequences in metagenomic contigs. It relies on the neural network models trained on full genome and plasmid sequences and can differentiate between plasmids and chromosomes with accuracy reaching 96% (Krawczyk, Lipinski, & Dziembowski, 2018).
 
-\emph{GigaScience} encourages and assists with the submission of detailed protocols to the open access repository \href{https://www.protocols.io/}{protocols.io}. Please enter the details into protocols.io, issue a DOI, and cite the protocols.io record from the Methods section.
 
-Authors benefit greatly by posting their methods in protocols.io as these are in a formatted form, allow inclusion of all the details, are fully searchable unlike supplementary files, and can be updated to new versions as basic methodology changes over time. Doing this saves authors extensive time in the future as the methods do not need to be rewritten in future manuscripts as they need only be cited.
 
 \section{Availability of source code and requirements (optional, if code is present)}
 
