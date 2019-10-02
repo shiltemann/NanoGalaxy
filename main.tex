@@ -123,27 +123,14 @@ Minimap2/Miniasm/Racon assembly and provides an end to end workflows for the
 Minimap2/Miniasm/Racon workflow.
 
 \section{Discussion}
-The results from both workflows are promising and show that they can reproduce the outcomes of
-the source, see Appendix IV: Results Minimap2/Miniasm/Racon workflow and Appendix V: Results .
-The Minimap2/Miniasm/Racon workflow is a fast way to assemble genomes but lacks the ability to
-scan for single nucleotide polymorphisms (SNPs). This is because Nanopore sequencing has a high
-error rate. In the future, this could be improved by newer technologies and be able to scan for AMR
-within a few hours depending on the size of input. The contig identity is not the same as found by R.
-Li et al., 2018, but this could be a consequence of using other tools. Whether the results are better
-or worse, cannot be concluded without further research. The total number of resistance genes
-detected by the workflow is higher than mentioned by R. Li et al.. This could indicate that the
-addition of PointFinder makes it possible to detect AMR more precisely. The Unicycler workflow
-combines the best features of both sequencing methods and therefore can be used for SNP
-detection and structure determination. The drawback of the workflow is that the running time
-increases. The assembly graphs show, as Wick et al., 2017, that for recreation of the structure it is
-necessary to use Nanopore reads. For future purposes both workflows could be combined, or tools
-can be used as a single instance. This makes it possible to achieve the information desired by the
-researcher. Although Galaxy is a user-friendly environment, it would be beneficial to develop
-another user interface to facilitate use. For validation the workflows need to be compared to
-alternative applications. Canu is, for example, an alternative for the assembly, but is a time taking
+The results from both workflows are promising and show that they can reproduce the outcomes of the source, see Appendix IV: Results Minimap2/Miniasm/Racon workflow and Appendix V: Results. The Minimap2/Miniasm/Racon workflow is a fast way to assemble genomes but lacks the ability to
+scan for single nucleotide polymorphisms (SNPs). This is because Nanopore sequencing has a high error rate. In the future, this could be improved by newer technologies and be able to scan for AMR within a few hours depending on the size of input. The contig identity is not the same as found by R.
+Li et al., 2018, but this could be a consequence of using other tools. Whether the results are better or worse, cannot be concluded without further research. The total number of resistance genes detected by the workflow is higher than mentioned by R. Li et al.. This could indicate that the addition of PointFinder makes it possible to detect AMR more precisely. The Unicycler workflow combines the best features of both sequencing methods and therefore can be used for SNP detection and structure determination. The drawback of the workflow is that the running time
+increases. The assembly graphs show, as Wick et al., 2017, that for recreation of the structure it is necessary to use Nanopore reads. For future purposes both workflows could be combined, or tools can be used as a single instance. This makes it possible to achieve the information desired by the researcher. Although Galaxy is a user-friendly environment, it would be beneficial to develop another user interface to facilitate use. For validation the workflows need to be compared to alternative applications. Canu is, for example, an alternative for the assembly, but is a time taking
 process. Therefore, it was not feasible to do the validation in the project.
 
-Conclusion
+\section{Conclusion}
+
 A user friendly Nanopore sequence analysis toolkit is created, including “end-to-end” workflows. This includes a fast and accurate workflow combining Minimap2, Miniasm and Racon plus a hybrid workflow for de novo assembly of plasmids and genomes, and for the detection of antimicrobial resistance genes using the best features of Illumina and Nanopore NGS. NanoGalaxy is validated with multi-plasmid assembly and resistance genes detection using the data from R. Li et al., 2018. Furthermore, the hybrid workflow is validated with the data from Wick et al.. The NanoGalaxy toolkit is now under field testing with collaborators by John Hays (EMC) and Peter van Baarlen (WUR). NanaoGalaxy is available from https://bioinf-galaxian.erasmusmc.nl/galaxy/. And the associated online training is available from https://galaxyproject.github.io/training-material/topics/sequence-analysis/tutorials/nanopore/tutorial.html.
 
 
