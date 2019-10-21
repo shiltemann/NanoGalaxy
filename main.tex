@@ -82,16 +82,51 @@ Due to the large amount of data created by nanopore and Illumina NGS sequencing,
 The Galaxy platform implements a user-friendly interface to accommodate command-line tools with their dependencies and refined work-flows needed for assembly of NGS data. This empowers researchers to do powerful analysis without the need for programming experience. Galaxy offers a wide range of tools for over 125 subjects. It has over 7000 citations, and with more than 7200 tools it is widely used in the biological science community \cite{galaxycitations, galaxytoolshed}. NanoGalaxy integrates the NGS assembly tools for a user-friendly, but powerful platform for ultimately on-site analysis of antimicrobial resistance.
 
 
-\section{Results}
-Toolkit and workflows
-The incorporation of the Nanopore tools result in the toolkit, NanoGalaxy, containing diverse
-applications for the analyses of Nanopore sequences. The tools available in the toolkit are shown in
-Figure 4 and outlined in Appendix I: NanoGalaxy tools.
+\subsection{Results}
 
-Minimap2/Miniasm/Racon workflow (PRIMUL)
-The workflow comparable to PRIMUL is shown in Figure 5. In which Minimap2, Miniasm and racon
-are used to assemble the genomes, Staramr for resistance gene detection, PlasFlow and Bandage for
-Species and plasmid determination and NanoPlot for quality assessment.
+\subsubsection{Toolkit and workflows}
+The incorporation of the Nanopore tools in the Galaxy platform result in the toolkit, NanoGalaxy, containing diverse
+applications for the analyses of Nanopore sequences (Table \ref{tab:NanoGalaxyToolkit}).
+
+\begin{table*}[b!]
+\caption{NanoGalaxy toolkit.}\label{tab:NanoGalaxyToolkit}
+\begin{tabular}{l l l}
+\toprule
+Category & Tool name & Github repository\\
+\midrule
+De novo genome assembly         &            &                                         \\
+                                & Flye       & \url{https://github.com/fenderglass/Flye}     \\
+                                & Canu       & \url{https://github.com/marbl/canu/}          \\
+                                & Unicycler  & \url{https://github.com/rrwick/Unicycler}     \\
+                                & Wtdbg2     & \url{https://github.com/ruanjue/wtdbg2}       \\
+                                & Miniasm    & \url{https://github.com/lh3/miniasm}          \\
+                                & Racon      & \url{https://github.com/isovic/racon}         \\
+                                & Spades     & \url{https://github.com/ablab/spades}         \\
+Long-read mapping               &            &                                               \\
+                                & Minimap2   & \url{https://github.com/lh3/minimap2}         \\
+                                & GraphMap   & \url{https://github.com/isovic/graphmap}      \\
+Polishing, QC and preprocessing &            &                                               \\
+                                & Nanopolish & \url{https://github.com/jts/nanopolish}       \\
+                                & Porechop   & \url{https://github.com/rrwick/Porechop}      \\
+                                & Filtlong   & \url{https://github.com/rrwick/Filtlong}      \\
+                                & Poretools  & \url{https://github.com/arq5x/poretools}      \\
+                                & Pilon      & \url{https://github.com/broadinstitute/pilon} \\
+                                & Poreplex   & \url{https://github.com/hyeshik/poreplex}     \\
+Visualization                   &            &                                               \\
+                                & Nanoplot   & \url{https://github.com/wdecoster/NanoPlot}   \\
+                                & Bandage    & \url{https://github.com/rrwick/Bandage}       \\
+Taxonomy and metagenomics       &            &                                               \\
+                                & Kraken2    & \url{https://github.com/DerrickWood/kraken2}  \\
+                                & PlasFlow   & \url{https://github.com/smaegol/PlasFlow}     \\
+                                & Staramr    & \url{https://github.com/phac-nml/staramr}     \\
+Methylation                     &            &                                               \\
+                                & Tombo      & \url{https://github.com/nanoporetech/tombo}   \\
+                                & Nanopolish & \url{https://github.com/jts/nanopolish}       \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+A long read assembly workflow employing minimap2 \cite{Li2018a}, miniasm \cite{Li2016} and Racon \cite{Vaser2017} is deployed including tools for further analysis. These tools consist of Staramr \cite{} for resistance gene detection, PlasFlow \cite{Krawczyk2018} and Bandage \cite{Wick2015} for species and plasmid determination and NanoPlot \cite{DeCoster2018} for quality assessment.
 
 The outcome of the pipeline compared to the paper is shown in Appendix IV: Results
 Minimap2/Miniasm/Racon workflow. 19 out of 21 plasmids are recovered with an average identity
@@ -120,170 +155,62 @@ To provide end users with the ability to use NanoGalaxy I developed an online tr
 Minimap2/Miniasm/Racon assembly and provides an end to end workflows for the
 Minimap2/Miniasm/Racon workflow.
 
-\section{Discussion}
 The results from both workflows are promising and show that they can reproduce the outcomes of the source, see Appendix IV: Results Minimap2/Miniasm/Racon workflow and Appendix V: Results. The Minimap2/Miniasm/Racon workflow is a fast way to assemble genomes but lacks the ability to
 scan for single nucleotide polymorphisms (SNPs). This is because Nanopore sequencing has a high error rate. In the future, this could be improved by newer technologies and be able to scan for AMR within a few hours depending on the size of input. The contig identity is not the same as found by R.
 Li et al., 2018, but this could be a consequence of using other tools. Whether the results are better or worse, cannot be concluded without further research. The total number of resistance genes detected by the workflow is higher than mentioned by R. Li et al.. This could indicate that the addition of PointFinder makes it possible to detect AMR more precisely. The Unicycler workflow combines the best features of both sequencing methods and therefore can be used for SNP detection and structure determination. The drawback of the workflow is that the running time
 increases. The assembly graphs show, as Wick et al., 2017, that for recreation of the structure it is necessary to use Nanopore reads. For future purposes both workflows could be combined, or tools can be used as a single instance. This makes it possible to achieve the information desired by the researcher. Although Galaxy is a user-friendly environment, it would be beneficial to develop another user interface to facilitate use. For validation the workflows need to be compared to alternative applications. Canu is, for example, an alternative for the assembly, but is a time taking
 process. Therefore, it was not feasible to do the validation in the project.
 
-\section{Conclusion}
-
 A user friendly Nanopore sequence analysis toolkit is created, including “end-to-end” workflows. This includes a fast and accurate workflow combining Minimap2, Miniasm and Racon plus a hybrid workflow for de novo assembly of plasmids and genomes, and for the detection of antimicrobial resistance genes using the best features of Illumina and Nanopore NGS. NanoGalaxy is validated with multi-plasmid assembly and resistance genes detection using the data from R. Li et al., 2018. Furthermore, the hybrid workflow is validated with the data from Wick et al.. The NanoGalaxy toolkit is now under field testing with collaborators by John Hays (EMC) and Peter van Baarlen (WUR). NanaoGalaxy is available from https://bioinf-galaxian.erasmusmc.nl/galaxy/. And the associated online training is available from https://galaxyproject.github.io/training-material/topics/sequence-analysis/tutorials/nanopore/tutorial.html.
 
 
-\section{Potential implications}
-
-Authors should provide some additional comments about potential, more broad-ranging implications of their work that are not directly related to the current focus of their manuscript. This section is meant to promote discussion on possible ways the findings or data presented might be used in or have a relationship with other areas of research that may not be directly apparent in the work. It is not meant to provide `proof of importance' of the work. Only to engender expansion of use to other areas.
-
-Explicit personal opinions by the authors are permitted, but they should be made clear as such. References or related information to support the propositions should be included. These section should focus on work that can be done within the foreseeable future and specifically using the information within the manuscript, not provide speculation on how it will relate to far-reaching goals of the research area.
-
 \section{Methods}
-Minimap2
-Many assembly methods are designed for accurate and short reads, but not suitable for Nanopore reads. Nanopore reads have relatively high error rates and are long (Chu et al, 2017; de Lannoy et al., 2017; Koren et al., 2013; Magi et al., 2017). Overlap-Layout-Consensus (OLC) algorithms are shown to perform better, compared to de Bruijn graphs, with those reads (Z. Li et al., 2012). OLC-algorithms find the common sequence between two reads. Minimap2 is a commonly used state-of-the-art tool for this step (H. Li, 2016). Minimap2 partitions the reads into k-mers and finds the minimum representative set of k-mers and creates a hash table containing this set of minimizers. This hash table is used to efficiently find overlaps between two or a set of reads (H. Li, 2018).
-Miniasm
-Miniasm constructs a draft assembly from uncorrected read overlaps computed by Minimap2, while skipping the error-correction step. By skipping this step, it lowers the computational cost, but accuracy hereby relays directly on the accuracy of the reads. Further polishing is therefore executed by Racon.
-Racon
-The aim of Racon is to get a consensus sequence by constructing partial order alignment graphs. The sequences are divided in segments, after which Racon tries to find the best alignment. Multiple iterations of Racon might be needed to achieve a higher accuracy (Lee et al., 2002; Vaser et al., 2017). 
-NanoPlot
-NanoPlot can be used to produce informative quality control graphs (De Coster et al., 2018). Depending on the input data, it creates different outputs, as seen in Table 1. This gives a better insight on the data being dealt with.
-Staramr
-Staramr (*AMR) scans contigs against both the ResFinder (Zankari et al., 2012) and PointFinder (Zankari et al., 2017) and reports the detected antimicrobial resistance genes. ResFinder uses BLAST for identification of antimicrobial resistance genes. The ResFinder database contains over 1400 different resistance genes and is continuously updated as new resistance genes are identified. PointFinder is like ResFinder but instead of full genes, contains a database for detection of chromosomal point mutations associated with AMR.
-Unicycler tools
-Due to the disadvantages and advantages of both long and short reads, it would be ideal to use both. Unicylcer combines both types of data to produce a complete genome assembly with high accuracy in structure and sequence (Wick, Judd, Gorrie,  Holt, 2017b). In case of antimicrobial resistance, it is necessary to detect the plasmid structure, where mutations could be missed with only long reads. The proposed pipeline for the hybrid assembly contains other tools for preparation of the data. These tools are also incorporated in Galaxy. Furthermore, Bandage is included to visualise the assembly graphs created by Miniasm. It gives a graphical overview of the assembly structure. As last, PlasFlow is added to Galaxy to give a prediction of the structure and organisms related to the contigs.
-Trim Galore!
-Trim Galore! automatically trims for quality and adapters with some added functionality to remove biased methylation positions of sequence files. This can be used to trim the Illumina reads to achieve more accurate assembly. The first step of Trim Galore! is to trim low-quality base calls from the 3' end of the reads before adapter removal using FASTQC. Cutadapt is used to remove adapter sequences from the 3’ end of reads.
-Porechop
-To remove the adapters from the Nanopore reads, Porechop is used. Adapters on the ends of reads are trimmed off, and when a read has an adapter in its middle, it is treated as chimeric and chopped into separate reads. Porechop performs thorough alignments to effectively find adapters, even at low sequence identity.
-Filtlong
-Filtlong is a tool for filtering long reads by quality. It can take a set of long reads and produce a smaller, better subset. It uses both read length (longer is better) and read identity (higher is better) when choosing which reads pass the filter.
-Unicycler
-Unicycler is an assembly pipeline for bacterial genomes (Wick et al., 2017b). It can assemble Illumina-only read sets, functioning as a SPAdes-optimiser. It can also assemble long-read-only sets (PacBio or Nanopore) by running a Miniasm+Racon pipeline. For the best possible assemblies, give it both Illumina reads and long reads, and conducts a hybrid assembly.
-Bandage
-Bandage is a program for visualizing de novo assembly graphs by displaying connections, which are not present in the contigs file. Assemblies of whole genomes can be difficult to complete if repeated sequences occur in chromosomes or plasmids. Repeated sequences cause distinctive structures in the assembly graph, limiting contig length. Bandage’s visualization of the assembly graph makes it easy to identify the problematic parts of assemblies (Wick et al., 2015).
+\subsection{Implementation}
+The execution of the tool leverages Galaxy's ability to write templated files directly to disk with configuration from the tool form, and then running Circos directly on these templated configuration files.
 
-PlasFlow
-PlasFlow is a set of scripts used for predicting plasmid sequences in metagenomic contigs. It relies on the neural network models trained on full genome and plasmid sequences and can differentiate between plasmids and chromosomes with accuracy reaching 96% (Krawczyk, Lipinski, & Dziembowski, 2018).
+Installation of the Circos tool and its dependencies is handled by the Galaxy platform and utilizes the Conda framework for dependency management. All dependencies including circos itself are available from the Bioconda Conda channel \cite{gruning2018bioconda} and available as a virtualised container (rkt, Docker, Singularity).
 
 
+
+\subsection{Training Materials}
+Our tool greatly simplifies the creation of Circos plots, but the great number of options offered by the Circos tool require good documentation and explanation in order to optimize their utility for end-users. Circos offers a collection of tutorials that are designed to familiarize users with the various features of Circos \cite{circostutorials}. In a similar fashion, we have created a set of Galaxy tutorials aimed to educate users in the use of Circos within Galaxy. These tutorials are available from the Galaxy training materials website \cite{Batut2018}.
+
+\subsection{Future Work}
+While we have aimed to make our tool as feature-complete as possible, some of Circos' functionality is not currently exposed in the Galaxy tool. We intend to extend our tool to include these features, including but not limited to support for scaling subsections of the plots, and generation of HTML image maps.
 
 \section{Availability of source code and requirements (optional, if code is present)}
 
-Lists the following:
 \begin{itemize}
-\item Project name: e.g.~My bioinformatics project
-\item Project home page: e.g.~\url{http://sourceforge.net/projects/mged}
-\item Operating system(s): e.g.~Platform independent
-\item Programming language: e.g.~Java
-\item Other requirements: e.g.~Java 1.3.1 or higher, Tomcat 4.0 or higher
-\item License: e.g.~GNU GPL, FreeBSD etc.
-Any restrictions to use by non-academics: e.g. licence needed
+\item Project name:~NanoGalaxy
+\item Project home page:~\url{https://nanopore.usegalaxy.eu}
+\item Training Manual:~\url{https://galaxyproject.github.io/training-material/topics/metagenomics/tutorials/plasmid-metagenomics-nanopore/tutorial.html}
+\item License: GNU GPL
 \end{itemize}
-
-This needs to be under an \href{http:/opensource.org/licenses}{Open Source Initiative} approved license where practicable compiled running software is made available. If the code is not hosted in a repository the \href{https://github.com/gigascience}{\textit{GigaScience} GitHub repository} is also available for this purpose.
 
 \section{Availability of supporting data and materials}
 
-\textit{GigaScience} requires authors to deposit the data set(s) supporting the results reported in submitted manuscripts in a publicly-accessible data repository such as \href{http://gigadb.org/}{\textit{Giga}DB} (see \textit{Giga}DB database terms of use for complete details). This section should be included when supporting data are available and must include the name of the repository and the permanent identifier or accession number and persistent hyperlinks for the data sets (if appropriate). The following format is recommended:
-
-``The data set(s) supporting the results of this article is(are) available in the [repository name] repository, [cite unique persistent identifier].''
-
-Following the \href{https://www.force11.org/group/joint-declaration-data-citation-principles-final}{Joint Declaration of Data Citation Principles}, where appropriate we ask that the data sets be cited where it is first mentioned in the manuscript, and included in the reference list. If a DOI has been issued to a dataset please always cite it using the DOI rather than the less stable URL the DOI resolves to (e.g.~\url{http://dx.doi.org/10.5524/100044} rather than \url{http://gigadb.org/dataset/100044}). For more see:
-
-Data Citation Synthesis Group: Joint Declaration of Data Citation Principles. Martone M. (ed.) San Diego CA: FORCE11; 2014 [\url{https://www.force11.org/datacitation}]
-
-A list of available scientific research data repositories can be found in \href{http://www.re3data.org/}{res3data} and \href{https://biosharing.org/}{BioSharing}.
+The data presented here to illustrate our application was obtained from previous publications, and has been collected and made available from Zenodo \cite{TODO}.
 
 \section{Declarations}
 
 \subsection{List of abbreviations}
 If abbreviations are used in the text they should be defined in the text at first use, and a list of abbreviations should be provided in alphabetical order.
 
-\subsection{Ethical Approval (optional)}
-Manuscripts reporting studies involving human participants, human data or human tissue must:
-
-\begin{itemize}
-\item include a statement on ethics approval and consent (even where the need for approval was waived)
-\item include the name of the ethics committee that approved the study and the committee's reference number if appropriate
-\end{itemize}
-
-Studies involving animals must include a statement on ethics approval and have been treated in a humane manner in line with the \href{http://www.nc3rs.org.uk/arrive-guidelines}{ARRIVE guidelines}.
-
-See our \href{https://academic.oup.com/gigascience/pages/editorial_policies_and_reporting_standards}{editorial policies} for more information.
-
-If your manuscript does not report on or involve the use of any animal or human data or tissue, this section is not applicable to your submission. Please state ``Not applicable'' in this section.
-
-\subsection{Consent for publication}
-
-If your manuscript contains any individual person's data in any form, consent to publish must be obtained from that person, or in the case of children, their parent or legal guardian. All presentations of case reports must have consent to publish. You can use your institutional consent form. You should not send the form to us on submission, but we may request to see a copy at any stage (including after publication). Please also confirm you have followed national guidelines on data collection and release in the place the research was carried out, for example confirming you have Ministry of Science and Technology (MOST) approval in China.
-
-If your manuscript does not contain any individual person's data, please state ``Not applicable'' in this section.
-
 \subsection{Competing Interests}
-
-All financial and non-financial competing interests must be declared in this section. See our \href{https://academic.oup.com/gigascience/pages/editorial_policies_and_reporting_standards}{editorial policies} for a full explanation of competing interests. Where an author gives no competing interests, the listing will read `The author(s) declare that they have no competing interests'. If you are unsure whether you or any of your co-authors have a competing interest please contact the editorial office.
-
+The authors declare that they have no competing interests.
 
 \subsection{Funding}
-
-All sources of funding for the research reported should be declared. The role of the funding body in the design of the study and collection, analysis, and interpretation of data and in writing the manuscript should be declared. Please use \href{http://www.crossref.org/fundingdata/}{FundRef} to report funding sources and include the award/grant number, and the name of the Principal Investigator of the grant.
+This project was made possible with the support of the Albert Ludwig University of Freiburg and the CINECA project.
 
 
 \subsection{Author's Contributions}
-
-The individual contributions of authors to the manuscript should be specified in this section. Guidance and criteria for authorship can be found in our \href{https://academic.oup.com/gigascience/pages/editorial_policies_and_reporting_standards}{editorial policies}. We would recommend you follow some kind of standardised taxonomy like the \href{http://docs.casrai.org/CRediT}{CASRAI CRediT} (Contributor Roles Taxonomy).
+WK contributed to the tool development and writing of the manuscript.
 
 
 \section{Acknowledgements}
-
-Please acknowledge anyone who contributed towards the article who does not meet the criteria for authorship including anyone who provided professional writing services or materials.
-
-Authors should obtain permission to acknowledge from all those mentioned in the Acknowledgements section. If you do not have anyone to acknowledge, please write ``Not applicable'' in this section.
-
-See our \href{https://academic.oup.com/gigascience/pages/editorial_policies_and_reporting_standards}{editorial policies} for a full explanation of acknowledgements and authorship criteria.
-
-Group authorship: if you would like the names of the individual members of a collaboration group to be searchable through their individual PubMed records, please ensure that the title of the collaboration group is included on the title page and in the submission system and also include collaborating author names as the last paragraph of the “Acknowledgements” section. Please add authors in the format First Name, Middle initial(s) (optional), Last Name. You can add institution or country information for each author if you wish, but this should be consistent across all authors.
-
-Please note that individual names may not be present in the PubMed record at the time a published article is initially included in PubMed as it takes PubMed additional time to code this information.
-
-\section{Authors' information (optional)}
-
-You may choose to use this section to include any relevant information about the author(s) that may aid the reader's interpretation of the article, and understand the standpoint of the author(s). This may include details about the authors' qualifications, current positions they hold at institutions or societies, or any other relevant background information. Please refer to authors using their initials. Note this section should not be used to describe any competing interests.
-
-
+The authors would like to thank the Galaxy community for their help in reviewing, testing, and validating the tools presented here.
 
 %% Specify your .bib file name here, without the extension
 \bibliography{paper-refs}
-
-\begin{landscape}
-\begin{table}
-\caption{Automobile land speed records (GR 5-10). This is again the same table as before, but on a landscaped page. \textbf{Note that a hard page break is inserted immediately before and after \texttt{landscape}}, so you'll need to carefully position such an environment at a suitable location in your manuscript!}
-\label{tab:example:landscape}
-\begin{tabularx}{\linewidth}{S l l l r L}
-\toprule
-{Speed (mph)} & {Driver} & {Car} & {Engine} & {Date} & {Extra comments}\\
-\midrule
-407.447     & Craig Breedlove & Spirit of America          & GE J47    & 8/5/63  & (Just to demo a full-width table with auto-wrapping long lines) \\
-413.199     & Tom Green       & Wingfoot Express           & WE J46    & 10/2/64  \\
-434.22      & Art Arfons      & Green Monster              & GE J79    & 10/5/64  \\
-468.719     & Craig Breedlove & Spirit of America          & GE J79    & 10/13/64 \\
-526.277     & Craig Breedlove & Spirit of America          & GE J79    & 10/15/65 \\
-536.712     & Art Arfons      & Green Monster              & GE J79    & 10/27/65 \\
-555.127     & Craig Breedlove & Spirit of America, Sonic 1 & GE J79    & 11/2/65  \\
-576.553     & Art Arfons      & Green Monster              & GE J79    & 11/7/65  \\
-600.601     & Craig Breedlove & Spirit of America, Sonic 1 & GE J79    & 11/15/65 \\
-622.407     & Gary Gabelich   & Blue Flame                 & Rocket    & 10/23/70 \\
-633.468     & Richard Noble   & Thrust 2                   & RR RG 146 & 10/4/83  \\
-763.035     & Andy Green      & Thrust SSC                 & RR Spey   & 10/15/97\\
-\bottomrule
-\end{tabularx}
-
-\begin{tablenotes}
-\item Source is from this website: \url{https://www.sedl.org/afterschool/toolkits/science/pdf/ast_sci_data_tables_sample.pdf}
-\end{tablenotes}
-\end{table}
-\end{landscape}
-
-
 
 \end{document}
