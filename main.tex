@@ -22,21 +22,20 @@
 \title{NanoGalaxy: A Galaxy toolkit and workflows for nanopore and Illumina NGS de novo assembly}
 
 %%% Use the \authfn to add symbols for additional footnotes, if any. 1 is reserved for correspondence emails; then continuing with 2 etc for contributions.
-\author[1,\authfn{1},\authfn{2}]{Willem~de~Koning}
-\author[2,\authfn{1},\authfn{2}]{Saskia~Hiltemann}
+\author[1,\authfn{1}]{Willem~de~Koning}
+\author[1]{Saskia~Hiltemann}
 
 \affil[1]{Erasmus Medical Center, Department of Pathology, Wytemaweg 80, 3015 CN, Rotterdam, The Netherlands}
-\affil[2]{Second Institution}
+\affil[2]{Bioinformatics Group, Department of Computer Science, University of Freiburg, 79110 Freiburg im Breisgau, Germany}
 
 %%% Author Notes
-\authnote{\authfn{1}w.dekoning.1@erasmusmc.nl; saskiahiltemann@gmail.com}
-\authnote{\authfn{2}Contributed equally.}
+\authnote{\authfn{1}w.dekoning.1@erasmusmc.nl}
 
 %%% Paper category
 \papercat{Technical Note}
 
 %%% "Short" author for running page header
-\runningauthor{de Koning and Hiltemann et al.}
+\runningauthor{de Koning et al.}
 
 %%% Should only be set by an editor
 \jvolume{00}
@@ -94,7 +93,7 @@ applications for the analyses of Nanopore sequences (Table \ref{tab:NanoGalaxyTo
 \toprule
 Category & Tool name & Github repository\\
 \midrule
-De novo genome assembly         &            &                                         \\
+De novo genome assembly         &            &                                               \\
                                 & Flye       & \url{https://github.com/fenderglass/Flye}     \\
                                 & Canu       & \url{https://github.com/marbl/canu/}          \\
                                 & Unicycler  & \url{https://github.com/rrwick/Unicycler}     \\
@@ -111,7 +110,6 @@ Polishing, QC and preprocessing &            &                                  
                                 & Filtlong   & \url{https://github.com/rrwick/Filtlong}      \\
                                 & Poretools  & \url{https://github.com/arq5x/poretools}      \\
                                 & Pilon      & \url{https://github.com/broadinstitute/pilon} \\
-                                & Poreplex   & \url{https://github.com/hyeshik/poreplex}     \\
 Visualization                   &            &                                               \\
                                 & Nanoplot   & \url{https://github.com/wdecoster/NanoPlot}   \\
                                 & Bandage    & \url{https://github.com/rrwick/Bandage}       \\
@@ -120,7 +118,6 @@ Taxonomy and metagenomics       &            &                                  
                                 & PlasFlow   & \url{https://github.com/smaegol/PlasFlow}     \\
                                 & Staramr    & \url{https://github.com/phac-nml/staramr}     \\
 Methylation                     &            &                                               \\
-                                & Tombo      & \url{https://github.com/nanoporetech/tombo}   \\
                                 & Nanopolish & \url{https://github.com/jts/nanopolish}       \\
 \bottomrule
 \end{tabular}
@@ -128,32 +125,50 @@ Methylation                     &            &                                  
 
 A long read assembly workflow employing minimap2 \cite{Li2018a}, miniasm \cite{Li2016} and Racon \cite{Vaser2017} is deployed including tools for further analysis. These tools consist of Staramr \cite{} for resistance gene detection, PlasFlow \cite{Krawczyk2018} and Bandage \cite{Wick2015} for species and plasmid determination and NanoPlot \cite{DeCoster2018} for quality assessment.
 
-The outcome of the pipeline compared to the paper is shown in Appendix IV: Results
-Minimap2/Miniasm/Racon workflow. 19 out of 21 plasmids are recovered with an average identity
-of 97.76\%. All the plasmids are recognised as plasmid. The number of resistance genes is higher than
-found by R. Li et al., 2018.
-Unicycler workflow
-The workflow recommended by the Unicycler developers is shown in Figure 6. In which Trim Galore!,
-Porechop and Filtlong are used for quality trimming, Unicycler for de novo assembly, Staramr for
-resistance gene detection and bandage for plasmid visualization.
+The outcome of the pipeline is compared to the plasmids recovered by \citet{Li2018} \ref{tab:LiEtAl}. The pipeline recovers 19 out of 21 plasmids with an average identity of 97.76\%. All the plasmids are recognised as plasmid. The number of detected resistance genes is higher than found by \citet{Li2018}, this was expected as the PointFinder database is included by Staramr.
 
-The Assembly graphs, Table 2, are compared to the results from Wick et al., 2017, see Appendix V:
-Results Wick et al., 2017. The Illumina-only graphs show an unclear visualization of plasmids, where
-Nanopore-only is already able to achieve the structure of Plasmids. The combination of both
-sequence techniques gives the clearest view of plasmids and show the same result as shown by Wick
-et al., 2017. A histogram of the read lengths is shown to describe the data used as input.
+\begin{landscape}
+\begin{table}
+\caption{The plasmids found by the workflow are BLAST against the plasmids recovered by R. Li et al..}\label{tab:LiEtAl}
+\begin{tabularx}{\linewidth}{l l l l l l l l l}
+\toprule
+\textbf{Barcode}         & \textbf{Plasmid}                   & \textbf{Size} & \textbf{Structural} & \textbf{No. of resistance genes} & \textbf{No. of resistance genes - paper} & \textbf{Coverage} & \textbf{Identity} & \textbf{Comment}  \\
+\midrule
+RB01                     & RB01-LZ135-CTX-128976              & 128976        & Circular            & 8                                & 8                                        & 100               & 98.615            &                   \\
+                         & RB01-LZ135-NDM-90845               & 90845         & Circular            & 10                               & 5                                        & 99                & 98.788            &                   \\
+RB02                     & RB02-JN105-IncF-TET-116277-N       & 116277        & Circular            & 4                                & 6                                        & 99                & 97.872            &                   \\
+                         & RB02-JN105-IncN-CTX-139496-N       & 142307        & Circular            & 10                               & 9                                        & 99                & 97.796            &                   \\
+                         & RB02-JN105-IncN-NDM6-55342         & 55342         & Circular            & 11                               & 3                                        & 99                & 86.689            & Not the first hit \\
+                         & RB02-JN105-IncX-NDM5-45823         & 45823         & Circular            & 3                                & 1                                        & 99                & 98.449            &                   \\
+                         & RB02-JN105-IncY-CTX-98443          & 98443         & Circular            & 0                                & 0                                        & 99                & 98.771            &                   \\
+RB03                     & RB03-WH96T-IncF-OXA-153088         & 153088        & Circular            & 5                                & 3                                        & 100               & 98.355            &                   \\
+                         & RB03-WH96T-IncN-NDM1-56215         & 56215         & Circular            & 6                                & 2                                        & 100               & 98.278            &                   \\
+RB04                     & RB04-SZ584-1T-IncF-TET-114056      & 114065        & Circular            & 6                                & 7                                        & 99                & 98.387            &                   \\
+                         & RB04-SZ584-1T-IncX3-NDM1-56K-NC    & 55919         & Circular            & 6                                & 2                                        & 26                & 97.452            & Not the first hit \\
+                         & RB04-SZ584-1T-IncY-130821          & 130821        & Circular            & 0                                & 0                                        & 99                & 98.322            &                   \\
+RB05                     & RB05-C267-IncA/C-CTX-166467        & 166467        & Circular            & 8                                & 10                                       & 99                & 98.92             &                   \\
+RB06                     & RB06-C499-IncA/C-CTX-192739        & 192739        & Circular            & 11                               & 11                                       & 100               & 98.675            &                   \\
+RB07                     & RB07-vb0506-IncA/C-CTX-133742      & 133742        & Circular            & 5                                & 6                                        & 100               & 98.348            &                   \\
+RB09                     & RB09-IncN-KPC-68571                & 68571         & Circular            & 34                               & 7                                        & 100               & 98.497            &                   \\
+RB10                     & RB10-29KPC-IncF-TET-136532         & 136532        & Circular            & 10                               & 12                                       & 99                & 98.658            &                   \\
+                         & RB10-29KPC-IncY-KPC-98K-N          & 95908         & Circular            & 2                                & 1                                        & 99                & 97.769            &                   \\
+RB11                     & RB11-IncF-IncHI-KPC-238153         & 238153        & Circular            & 2                                & 2                                        & 99                & 98.48             &                   \\
+RB12                     & RB12-74T-KPC-IncF-115K-N           & 115689        & Circular            & 0                                & 0                                        & 99                & 97.948            &                   \\
+                         & RB12-74T-KPC-IncN-IncX1-KPC-108K-N & 107969        & Circular            & 5                                & 5                                        & 100               & 97.927            &                   \\
+\midrule
+\textbf{Total / Average} & \textbf{}                          & \textbf{}     & \textbf{}           & \textbf{146}                     & \textbf{100}                             & \textbf{95.86}    & \textbf{97.76}    & \textbf{}        \\
+\bottomrule
+\end{tabularx}
+\end{table}
+\end{landscape}
 
-Report
-The results from both workflows are summarized in a report using iReport, see Figure 7. iReport is a
-reporting tool for Galaxy that allows users to create interactive HTML reports directly from the
-Galaxy UI, with the ability to combine different outputs from the tools used in NanoGalaxy
-(Hiltemann et al., 2014).
 
-Training manual
-To provide end users with the ability to use NanoGalaxy I developed an online training manual
-(https://galaxyproject.github.io/training-material/topics/sequenceanalysis/tutorials/nanopore/tutorial.html). This manual demonstrates the use of the tools for
-Minimap2/Miniasm/Racon assembly and provides an end to end workflows for the
-Minimap2/Miniasm/Racon workflow.
+Furthermore a workflow processing Nanopore and Illumina sequences is included to combine the best features of both sequencing methods. The workflow recommended by the Unicycler developers \cite{Wick2017} includes Trim Galore!,
+Porechop and Filtlong for quality trimming, Unicycler for de novo assembly, Staramr for resistance gene detection and bandage for plasmid visualization. These tools are made available in NanoGalaxy and combined in a workflow. The Assembly graphs are compared to the results from \citet{Wick2017}. The Illumina-only graphs show an unclear visualization of plasmids, where Nanopore-only is able to achieve the structure of Plasmids. The combination of both sequence techniques gives the clearest view of plasmids and shows the same result as shown by \citet{Wick2017}.
+
+
+
+
 
 The results from both workflows are promising and show that they can reproduce the outcomes of the source, see Appendix IV: Results Minimap2/Miniasm/Racon workflow and Appendix V: Results. The Minimap2/Miniasm/Racon workflow is a fast way to assemble genomes but lacks the ability to
 scan for single nucleotide polymorphisms (SNPs). This is because Nanopore sequencing has a high error rate. In the future, this could be improved by newer technologies and be able to scan for AMR within a few hours depending on the size of input. The contig identity is not the same as found by R.
@@ -174,6 +189,9 @@ Installation of the Circos tool and its dependencies is handled by the Galaxy pl
 
 \subsection{Training Materials}
 Our tool greatly simplifies the creation of Circos plots, but the great number of options offered by the Circos tool require good documentation and explanation in order to optimize their utility for end-users. Circos offers a collection of tutorials that are designed to familiarize users with the various features of Circos \cite{circostutorials}. In a similar fashion, we have created a set of Galaxy tutorials aimed to educate users in the use of Circos within Galaxy. These tutorials are available from the Galaxy training materials website \cite{Batut2018}.
+
+Training manual
+To provide end users with the ability to use NanoGalaxy, an online training manual is developed. This manual demonstrates the use of the tools for long read assembly and provides the end to end workflows.
 
 \subsection{Future Work}
 While we have aimed to make our tool as feature-complete as possible, some of Circos' functionality is not currently exposed in the Galaxy tool. We intend to extend our tool to include these features, including but not limited to support for scaling subsections of the plots, and generation of HTML image maps.
