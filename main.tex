@@ -53,7 +53,7 @@
 
 \textbf{Results:} The user-friendly workflows enable the clinical researcher to analyse whole shotgun metagenomic data from both nanopore and Illumina next generation sequencing (NGS) to give superior detection of pathogen resistance from both the genomic and plasmid level.  We demonstrate the utility of NanoGalaxy to determine the pathogenicity from clinical NGS data.
 
-\textbf{Conclusions:} NanoGalaxy contains tools that cover quality control, de novo assembly, species and assembly detection, AMR detection and reporting of the analysis. The goal is to create a user-friendly environment where researchers can choose their nanopore analysis tools or pipelines based on their research question, making their research reproducible.
+\textbf{Conclusions:} NanoGalaxy contains tools that cover quality control, de novo assembly, species and assembly detection, AMR detection and reporting of the analysis. The tools are made available in the Galaxy Tool Shed, and is accompanied by a Galaxy training manual (\url{https://training.galaxyproject.org}). The goal is to create a user-friendly environment where researchers can choose their nanopore analysis tools or pipelines based on their research question, making their research reproducible. 
 \end{abstract}
 
 \begin{keywords}
@@ -61,18 +61,9 @@ Metagenomics; Galaxy; Reproducibility; Antibiotic resistance; Workflow; Plasmid
 \end{keywords}
 \end{frontmatter}
 
-%%% Key points will be printed at top of second page
-%\begin{keypoints*}
-%\begin{itemize}
-%\item This is the first point
-%\item This is the second point
-%\item One last point.
-%\end{itemize}
-%\end{keypoints*}
-
 \section{Findings}
 \subsection{Background}
-According to the World Health Organization (WHO) and the Organisation for Economic Co-operation and Development (OECD), AMR has become one of the biggest threats to global health, food security and development \cite{OrganisationforEconomicCo-operationandDevelopment2017, WorldHealthOrganization2018}. The misuse of antibiotics in medical, veterinary and agricultural sectors contributes to the rise of antibiotic resistant pathogens. An increase in AMR may ultimately lead to an era where common infections could be lethal again. It is suspected that around 50.000 lives per year are lost due to AMR infections within the USA and Europe \cite{Simlai2016}. AMR infections are expected to increase, reaching 10 million deaths per year by 2050 \cite{ONeil2014}. To prevent this, AMR detection in samples (from all organisms) needs to be faster and be done at the subject's site. 
+According to the World Health Organization (WHO) and the Organisation for Economic Co-operation and Development (OECD), AMR has become one of the biggest threats to global health, food security and development \cite{OrganisationforEconomicCo-operationandDevelopment2017, WorldHealthOrganization2018}. The misuse of antibiotics in medical, veterinary and agricultural sectors contributes to the rise of antibiotic resistant pathogens. An increase in AMR may ultimately lead to an era where common infections could be lethal again. It is suspected that around 50.000 lives per year are lost due to AMR infections within the USA and Europe \cite{Simlai2016}. AMR infections are expected to increase, reaching 10 million deaths per year by 2050 \cite{ONeil2014}. To prevent this, AMR detection in samples (from all organisms) needs to be faster and be done at the subject's site.
 
 Detection of resistant bacteria provides vital information for infection control measures. Therefore, determination of AMR is important and progressing with new innovations. The conventional methods for identification involve culturing and can take a few days or weeks to complete \cite{Quick2015}. Moreover, not all species are susceptible to laboratory-based culturing \cite{Mitsuhashi2017}. Therefore, DNA-sequencing technology is used to reduce the sample-to-result time. Illumina sequencing is the most common sequencing method, but has difficulties identifying repetitive insertion sequences usually found flanking the horizontally acquired genes often associated with AMR \cite{Ashton2014}. Furthermore, the structure of the DNA cannot be determined with short-read sequencing. Thus, the use of nanopore sequences is proposed. The disadvantage of nanopore is the high error rate, but by combining short- and long-read sequencing methods, the strengths of both techniques can help overcome these problems.
 
@@ -161,7 +152,6 @@ RB12                     & RB12-74T-KPC-IncF-115K-N           & 115689        & 
 \end{tabular}
 \end{table}
 \end{landscape}
-
 
 The long read assembly workflow is a fast way to assemble genomes but lacks the ability to scan for single nucleotide polymorphisms (SNPs). This is because nanopore sequencing has a higher error rate. Therefore, a workflow processing nanopore and Illumina sequences is included to combine the best features of both sequencing methods. The workflow recommended by the Unicycler developers \cite{Wick2017} includes Trim Galore!, Porechop and Filtlong for quality trimming, Unicycler for de novo assembly, Staramr for resistance gene detection and bandage for plasmid visualization. These tools are made available in NanoGalaxy as stand-alone tools and combined in a workflow. The Assembly graphs are compared to the results from \citet{Wick2017}. The Illumina-only graphs show an unclear visualization of plasmids, where nanopore-only is able to achieve the structure of Plasmids. The combination of both sequence techniques gives the clearest view of plasmids and shows the same result as shown by \citet{Wick2017} (Figure \ref{figure:WickEtAl}).
 
