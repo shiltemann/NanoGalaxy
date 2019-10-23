@@ -19,7 +19,7 @@
 %%% Flushend: You can add this package to automatically balance the final page, but if things go awry (e.g. section contents appearing out-of-order or entire blocks or paragraphs are coloured), remove it!
 % \usepackage{flushend}
 
-\title{NanoGalaxy: A Galaxy toolkit and workflows for nanopore and Illumina NGS de novo assembly}
+\title{NanoGalaxy: A Galaxy tool kit and workflows for nanopore and Illumina NGS de novo sequence assembly}
 
 %%% Use the \authfn to add symbols for additional footnotes, if any. 1 is reserved for correspondence emails; then continuing with 2 etc for contributions.
 \author[1,\authfn{1}]{Willem~de~Koning}
@@ -49,9 +49,9 @@
 \begin{abstract}
 %%The Abstract (250 words maximum) should be structured to include the following details: \textbf{Background}, the context and purpose of the study; \textbf{Results}, the main findings; \textbf{Conclusions}, brief summary and potential implications. Please minimize the use of abbreviations and do not cite references in the abstract.
 
-\textbf{Background:} NanoGalaxy is a nanopore sequence analysis Galaxy toolkit for de novo assembly metagenomics genomes and plasmids from nanopore NGS data, including “end to end” workflows and web reporting for antimicrobial resistance (AMR) detection from clinical material.
+\textbf{Background:} NanoGalaxy is a nanopore sequence analysis Galaxy tool kit for de novo assembly of metagenomic genomes and plasmids, including “end to end” workflows and web reporting for antimicrobial resistance (AMR) detection from clinical material.
 
-\textbf{Results:} The user-friendly workflows enable the clinical researcher to analyze whole shotgun metagenomic data from both nanopore and Illumina NGS to give superior detection of pathogen resistance from both the genomic and plasmid level.  We demonstrate the utility of NanoGalaxy to determine the pathogenicity from clinical NGS data and present the results as an easy to read iReport.
+\textbf{Results:} The user-friendly workflows enable the clinical researcher to analyse whole shotgun metagenomic data from both nanopore and Illumina next generation sequencing (NGS) to give superior detection of pathogen resistance from both the genomic and plasmid level.  We demonstrate the utility of NanoGalaxy to determine the pathogenicity from clinical NGS data.
 
 \textbf{Conclusions:} NanoGalaxy contains tools that cover quality control, de novo assembly, species and assembly detection, AMR detection and reporting of the analysis. The goal is to create a user-friendly environment where researchers can choose their nanopore analysis tools or pipelines based on their research question, making their research reproducible.
 \end{abstract}
@@ -74,22 +74,22 @@ Metagenomics; Galaxy; Reproducibility; Antibiotic resistance; Workflow; Plasmid
 \subsection{Background}
 According to the World Health Organization (WHO) and the Organisation for Economic Co-operation and Development (OECD), AMR has become one of the biggest threats to global health, food security and development \cite{OrganisationforEconomicCo-operationandDevelopment2017, WorldHealthOrganization2018}. The misuse of antibiotics in medical, veterinary and agricultural sectors contributes to the rise of antibiotic resistant pathogens. An increase in AMR may ultimately lead to an era where common infections could be lethal again. It is suspected that around 50.000 lives per year are lost due to AMR infections within the USA and Europe \cite{Simlai2016}. AMR infections are expected to increase, reaching 10 million deaths per year by 2050 \cite{ONeil2014}. To prevent this, AMR detection in samples (from all organisms) needs to be faster and be done at the subject's site. 
 
-Detection of resistant bacteria provides vital information for infection control measures. Therefore, determination of AMR is important and progressing with new innovations. The conventional methods for identification involve culturing and can take a few days or weeks to complete \cite{Quick2015}. Moreover, not all species are susceptible to laboratory-based culturing \cite{Mitsuhashi2017}. Therefore, DNA-sequencing technology is used to reduce the sample-to-result time. Illumina sequencing is the most common sequencing method, but has difficulties identifying repetitive insertion sequences usually found flanking the horizontally acquired genes often associated with AMR \cite{Ashton2014}. Furthermore, the structure of the DNA cannot be determined with short-read sequencing. Thus, the use of Nanopore sequences is proposed. The disadvantage of Nanopore is the high error rate, but by combining short- and long-read sequencing methods, the strengths of both techniques can help overcome these problems.
+Detection of resistant bacteria provides vital information for infection control measures. Therefore, determination of AMR is important and progressing with new innovations. The conventional methods for identification involve culturing and can take a few days or weeks to complete \cite{Quick2015}. Moreover, not all species are susceptible to laboratory-based culturing \cite{Mitsuhashi2017}. Therefore, DNA-sequencing technology is used to reduce the sample-to-result time. Illumina sequencing is the most common sequencing method, but has difficulties identifying repetitive insertion sequences usually found flanking the horizontally acquired genes often associated with AMR \cite{Ashton2014}. Furthermore, the structure of the DNA cannot be determined with short-read sequencing. Thus, the use of nanopore sequences is proposed. The disadvantage of nanopore is the high error rate, but by combining short- and long-read sequencing methods, the strengths of both techniques can help overcome these problems.
 
 Due to the large amount of data created by nanopore and Illumina NGS sequencing, assembly is a complex, difficult to reproduce and computationally intensive analysis. Hence, NGS sequence data must be processed by refined work-flows which can requisite bioinformatics skills \cite{Hemlata2016}. Each step of the analysis may require a set of different tools or software. For example de novo assembly is done through alignment, assembly and polishing tools which all require multiple parameters. Minimap2 designed for pairwise alignment, cannot be used as standalone for de novo assembly, therefore miniasm and racon are also used. This makes it more complex as they are command-line tools, which require extensive computational resources. 
 
-The Galaxy platform implements a user-friendly interface to accommodate command-line tools with their dependencies and refined work-flows needed for assembly of NGS data. This empowers researchers to do powerful analysis without the need for programming experience. Galaxy offers a wide range of tools for over 125 subjects. It has over 7000 citations, and with more than 7200 tools it is widely used in the biological science community \cite{galaxycitations, galaxytoolshed}. NanoGalaxy integrates the NGS assembly tools for a user-friendly, but powerful platform for ultimately on-site analysis of antimicrobial resistance.
+The Galaxy platform implements a user-friendly interface to accommodate command-line tools with their dependencies and refined work-flows needed for assembly of NGS data. This empowers researchers to do powerful analysis without the need for programming experience. Galaxy offers a wide range of tools for over 125 subjects. It has over 7000 citations, and with more than 7200 tools it is widely used in the biological science community \cite{Galaxycitations, Galaxytoolshed}. NanoGalaxy integrates the NGS assembly tools for a user-friendly, but powerful platform for ultimately on-site analysis of antimicrobial resistance.
 
 
 \subsection{Results}
 
-\subsubsection{Toolkit and workflows}
-The incorporation of the Nanopore tools in the Galaxy platform result in the toolkit, NanoGalaxy, containing diverse
-applications for the analyses of Nanopore sequences (Table \ref{tab:NanoGalaxyToolkit}).
+\subsubsection{Tool kit and workflows}
+The incorporation of the nanopore tools in the Galaxy platform result in the tool kit, NanoGalaxy, containing diverse
+applications for the analyses of nanopore sequences (Table \ref{tab:NanoGalaxyToolkit}).
 
-\begin{table*}[b!]
-\caption{NanoGalaxy toolkit.}\label{tab:NanoGalaxyToolkit}
-\begin{tabular}{l l l}
+\begin{table}[b!]
+\caption{NanoGalaxy tool kit.}\label{tab:NanoGalaxyToolkit}
+\begin{tabularx}{\linewidth}{l l l}
 \toprule
 Category & Tool name & Github repository\\
 \midrule
@@ -120,17 +120,17 @@ Taxonomy and metagenomics       &            &                                  
 Methylation                     &            &                                               \\
                                 & Nanopolish & \url{https://github.com/jts/nanopolish}       \\
 \bottomrule
-\end{tabular}
-\end{table*}
+\end{tabularx}
+\end{table}
 
 A long read assembly workflow employing minimap2 \cite{Li2018a}, miniasm \cite{Li2016} and Racon \cite{Vaser2017} is deployed including tools for further analysis. These tools consist of Staramr \cite{} for resistance gene detection, PlasFlow \cite{Krawczyk2018} and Bandage \cite{Wick2015} for species and plasmid determination and NanoPlot \cite{DeCoster2018} for quality assessment.
 
-The outcome of the pipeline is compared to the plasmids recovered by \citet{Li2018} \ref{tab:LiEtAl}. The pipeline recovers 19 out of 21 plasmids with an average identity of 97.76\%. All the plasmids are recognised as plasmid. The number of detected resistance genes is higher than found by \citet{Li2018}, this was expected as the PointFinder database is included by Staramr.
+The outcome of the pipeline is compared to the plasmids recovered by \citet{Li2018} (Table \ref{tab:LiEtAl}). The pipeline recovers 19 out of 21 plasmids with an average identity of 97.76\%. All the plasmids are recognised as plasmid. The number of detected resistance genes is higher than found by \citet{Li2018}, this was expected as the PointFinder database is included by Staramr.
 
 \begin{landscape}
 \begin{table}
 \caption{The plasmids found by the workflow are BLAST against the plasmids recovered by R. Li et al..}\label{tab:LiEtAl}
-\begin{tabularx}{\linewidth}{l l l l l l l l l}
+\begin{tabular}{l l l l l l l l l}
 \toprule
 \textbf{Barcode}         & \textbf{Plasmid}                   & \textbf{Size} & \textbf{Structural} & \textbf{No. of resistance genes} & \textbf{No. of resistance genes - paper} & \textbf{Coverage} & \textbf{Identity} & \textbf{Comment}  \\
 \midrule
@@ -158,43 +158,30 @@ RB12                     & RB12-74T-KPC-IncF-115K-N           & 115689        & 
 \midrule
 \textbf{Total / Average} & \textbf{}                          & \textbf{}     & \textbf{}           & \textbf{146}                     & \textbf{100}                             & \textbf{95.86}    & \textbf{97.76}    & \textbf{}        \\
 \bottomrule
-\end{tabularx}
+\end{tabular}
 \end{table}
 \end{landscape}
 
 
-Furthermore a workflow processing Nanopore and Illumina sequences is included to combine the best features of both sequencing methods. The workflow recommended by the Unicycler developers \cite{Wick2017} includes Trim Galore!,
-Porechop and Filtlong for quality trimming, Unicycler for de novo assembly, Staramr for resistance gene detection and bandage for plasmid visualization. These tools are made available in NanoGalaxy and combined in a workflow. The Assembly graphs are compared to the results from \citet{Wick2017}. The Illumina-only graphs show an unclear visualization of plasmids, where Nanopore-only is able to achieve the structure of Plasmids. The combination of both sequence techniques gives the clearest view of plasmids and shows the same result as shown by \citet{Wick2017}.
+The long read assembly workflow is a fast way to assemble genomes but lacks the ability to scan for single nucleotide polymorphisms (SNPs). This is because nanopore sequencing has a higher error rate. Therefore, a workflow processing nanopore and Illumina sequences is included to combine the best features of both sequencing methods. The workflow recommended by the Unicycler developers \cite{Wick2017} includes Trim Galore!, Porechop and Filtlong for quality trimming, Unicycler for de novo assembly, Staramr for resistance gene detection and bandage for plasmid visualization. These tools are made available in NanoGalaxy as stand-alone tools and combined in a workflow. The Assembly graphs are compared to the results from \citet{Wick2017}. The Illumina-only graphs show an unclear visualization of plasmids, where nanopore-only is able to achieve the structure of Plasmids. The combination of both sequence techniques gives the clearest view of plasmids and shows the same result as shown by \citet{Wick2017} (Figure \ref{figure:WickEtAl}).
 
+\begin{figure}[bt!]
+\centering
+\includegraphics[width=\linewidth]{images/unicycler_result.png}
+	\caption{Here the output of \citet{Wick2017} is reproduced. The plasmid assembly graphs output created by Bandage are shown to confirm that the workflow works as expected. The length distribution, total yield and N50 of the Oxford Nanopore Technologies (ONT) reads of each \textit{K. pneumoniae} are shown to show the input data.}\label{figure:WickEtAl}
+\end{figure}
 
-
-
-
-The results from both workflows are promising and show that they can reproduce the outcomes of the source, see Appendix IV: Results Minimap2/Miniasm/Racon workflow and Appendix V: Results. The Minimap2/Miniasm/Racon workflow is a fast way to assemble genomes but lacks the ability to
-scan for single nucleotide polymorphisms (SNPs). This is because Nanopore sequencing has a high error rate. In the future, this could be improved by newer technologies and be able to scan for AMR within a few hours depending on the size of input. The contig identity is not the same as found by R.
-Li et al., 2018, but this could be a consequence of using other tools. Whether the results are better or worse, cannot be concluded without further research. The total number of resistance genes detected by the workflow is higher than mentioned by R. Li et al.. This could indicate that the addition of PointFinder makes it possible to detect AMR more precisely. The Unicycler workflow combines the best features of both sequencing methods and therefore can be used for SNP detection and structure determination. The drawback of the workflow is that the running time
-increases. The assembly graphs show, as Wick et al., 2017, that for recreation of the structure it is necessary to use Nanopore reads. For future purposes both workflows could be combined, or tools can be used as a single instance. This makes it possible to achieve the information desired by the researcher. Although Galaxy is a user-friendly environment, it would be beneficial to develop another user interface to facilitate use. For validation the workflows need to be compared to alternative applications. Canu is, for example, an alternative for the assembly, but is a time taking
-process. Therefore, it was not feasible to do the validation in the project.
-
-A user friendly Nanopore sequence analysis toolkit is created, including “end-to-end” workflows. This includes a fast and accurate workflow combining Minimap2, Miniasm and Racon plus a hybrid workflow for de novo assembly of plasmids and genomes, and for the detection of antimicrobial resistance genes using the best features of Illumina and Nanopore NGS. NanoGalaxy is validated with multi-plasmid assembly and resistance genes detection using the data from R. Li et al., 2018. Furthermore, the hybrid workflow is validated with the data from Wick et al.. The NanoGalaxy toolkit is now under field testing with collaborators by John Hays (EMC) and Peter van Baarlen (WUR). NanaoGalaxy is available from https://bioinf-galaxian.erasmusmc.nl/galaxy/. And the associated online training is available from https://galaxyproject.github.io/training-material/topics/sequence-analysis/tutorials/nanopore/tutorial.html.
-
+The results from both workflows show that they can reproduce the outcomes of the source. For other analysis purposes tools can be used as a single instance or combined into novel workflows. This makes it possible to achieve the information desired by the researcher.
 
 \section{Methods}
 \subsection{Implementation}
-The execution of the tool leverages Galaxy's ability to write templated files directly to disk with configuration from the tool form, and then running Circos directly on these templated configuration files.
-
-Installation of the Circos tool and its dependencies is handled by the Galaxy platform and utilizes the Conda framework for dependency management. All dependencies including circos itself are available from the Bioconda Conda channel \cite{gruning2018bioconda} and available as a virtualised container (rkt, Docker, Singularity).
-
-
+The implementation of the tools and workflows in Galaxy gives a non-programmer the ability to do extensive research on nanopore sequence data without coding. All tools and their dependencies are installed through the Galaxy platform and are managed by the Conda framework for dependency management. The tools and their dependencies are available from the Bioconda Conda channel \cite{Gruning2018}.
 
 \subsection{Training Materials}
-Our tool greatly simplifies the creation of Circos plots, but the great number of options offered by the Circos tool require good documentation and explanation in order to optimize their utility for end-users. Circos offers a collection of tutorials that are designed to familiarize users with the various features of Circos \cite{circostutorials}. In a similar fashion, we have created a set of Galaxy tutorials aimed to educate users in the use of Circos within Galaxy. These tutorials are available from the Galaxy training materials website \cite{Batut2018}.
-
-Training manual
-To provide end users with the ability to use NanoGalaxy, an online training manual is developed. This manual demonstrates the use of the tools for long read assembly and provides the end to end workflows.
+To provide end users with the ability to use NanoGalaxy, an online training manual is developed. This manual demonstrates the use of the tools for long read assembly and provides the end to end workflows. The manuals can be found on the Galaxy training materials website \cite{Batut2018}.  
 
 \subsection{Future Work}
-While we have aimed to make our tool as feature-complete as possible, some of Circos' functionality is not currently exposed in the Galaxy tool. We intend to extend our tool to include these features, including but not limited to support for scaling subsections of the plots, and generation of HTML image maps.
+Nanopore sequence analysis is fairly new, therefore there are new developments ongoing. These new created tools or updates of the already incorporated tools need to be kept up-to-date in the Galaxy platform. Furthermore, already incorporated tools can be extended with certain functionalities of the original tools that are now lacking.   
 
 \section{Availability of source code and requirements (optional, if code is present)}
 
@@ -207,22 +194,30 @@ While we have aimed to make our tool as feature-complete as possible, some of Ci
 
 \section{Availability of supporting data and materials}
 
-The data presented here to illustrate our application was obtained from previous publications, and has been collected and made available from Zenodo \cite{TODO}.
+The data presented here to illustrate the functionality of the tools was obtained from previous publications, and has been collected and made available from Zenodo \cite{TODO}.
 
 \section{Declarations}
 
 \subsection{List of abbreviations}
-If abbreviations are used in the text they should be defined in the text at first use, and a list of abbreviations should be provided in alphabetical order.
+
+\begin{itemize}
+\item AMR: Antimicrobial Resistance
+\item NGS: Next Generation Sequencing
+\item OECD: Organisation for Economic Co-operation and Development
+\item ONT: Oxford Nanopore Technologies
+\item SNPs: Single Nucleotide Polymorphisms
+\item WHO: World Health Organization
+\end{itemize}
 
 \subsection{Competing Interests}
 The authors declare that they have no competing interests.
 
 \subsection{Funding}
-This project was made possible with the support of the Albert Ludwig University of Freiburg and the CINECA project.
+This project was made possible with the support of ...
 
 
 \subsection{Author's Contributions}
-WK contributed to the tool development and writing of the manuscript.
+WK and SH contributed to the tool development and writing of the manuscript.
 
 
 \section{Acknowledgements}
