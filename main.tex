@@ -19,7 +19,7 @@
 %%% Flushend: You can add this package to automatically balance the final page, but if things go awry (e.g. section contents appearing out-of-order or entire blocks or paragraphs are coloured), remove it!
 % \usepackage{flushend}
 
-\title{NanoGalaxy: A Galaxy tool kit and workflows for nanopore and Illumina NGS de novo sequence assembly}
+\title{NanoGalaxy: A Galaxy tool kit with workflows for third-generation sequence analyis}
 
 %%% Use the \authfn to add symbols for additional footnotes, if any. 1 is reserved for correspondence emails; then continuing with 2 etc for contributions.
 \author[1,\authfn{1}]{Willem~de~Koning}
@@ -47,36 +47,27 @@
 \begin{frontmatter}
 \maketitle
 \begin{abstract}
-%%The Abstract (250 words maximum) should be structured to include the following details: \textbf{Background}, the context and purpose of the study; \textbf{Results}, the main findings; \textbf{Conclusions}, brief summary and potential implications. Please minimize the use of abbreviations and do not cite references in the abstract.
 
-\textbf{Background:} NanoGalaxy is a nanopore sequence analysis Galaxy tool kit for de novo assembly of metagenomic genomes and plasmids, including “end to end” workflows and web reporting for antimicrobial resistance (AMR) detection from clinical material.
+\textbf{Background:} NanoGalaxy is a third-generation (also known as long read) sequence analysis Galaxy tool kit for de novo assembly of metagenomic genomes and plasmids, including “end to end” workflows and web reporting for antimicrobial resistance (AMR) detection from clinical material.
 
-\textbf{Results:} The user-friendly workflows enable the clinical researcher to analyse whole shotgun metagenomic data from both nanopore and Illumina next generation sequencing (NGS) to give superior detection of pathogen resistance from both the genomic and plasmid level.  We demonstrate the utility of NanoGalaxy to determine the pathogenicity from clinical NGS data.
+\textbf{Results:} The user-friendly Galaxy platform providing the third-generation sequence workflows enable the clinical researcher to perform diverse analysis. This includes combining third-generation with second-generation sequencing. A user case on pathogenic resistance detection on plasmid level is demonstrated. 
 
-\textbf{Conclusions:} NanoGalaxy contains tools that cover quality control, de novo assembly, species and assembly detection, AMR detection and reporting of the analysis. The tools are made available in the Galaxy Tool Shed, and is accompanied by a Galaxy training manual (\url{https://training.galaxyproject.org}). The goal is to create a user-friendly environment, NanoGalaxy, where researchers can choose their nanopore analysis tools or pipelines based on their research question, making their research reproducible (\url{https://nanopore.usegalaxy.eu}). 
+\textbf{Conclusions:} NanoGalaxy contains tools that cover quality control, de novo assembly, species and assembly detection and AMR detection. The tools are made available in the Galaxy Tool Shed, and is accompanied by a Galaxy training manual (\url{https://training.galaxyproject.org}). The goal is to create a user-friendly environment, NanoGalaxy, where researchers can choose their nanopore analysis tools or pipelines based on their research question, making their research reproducible (\url{https://nanopore.usegalaxy.eu}). 
 \end{abstract}
 
 \begin{keywords}
-Metagenomics; Galaxy; Reproducibility; Antibiotic resistance; Workflow; Plasmid
+Metagenomics; Galaxy; Reproducibility; Antibiotic resistance; Tool kit; Workflows
 \end{keywords}
 \end{frontmatter}
 
 \section{Findings}
 \subsection{Background}
-According to the World Health Organization (WHO) and the Organisation for Economic Co-operation and Development (OECD), antimicrobial resistance (AMR) has become one of the biggest threats to global health, food security and development \cite{OrganisationforEconomicCo-operationandDevelopment2017, WorldHealthOrganization2018}. The misuse of antibiotics in medical, veterinary and agricultural sectors contributes to the rise of antibiotic resistant pathogens. An increase in AMR may ultimately lead to an era where common infections could be lethal again. It is suspected that around 50.000 lives per year are lost due to AMR infections within the USA and Europe \cite{Simlai2016}. AMR infections are expected to increase, reaching 10 million deaths per year by 2050 \cite{ONeil2014}. To prevent this, AMR detection in samples (from all organisms) needs to be faster and be done at the subject's site.
-
-Detection of resistant bacteria provides vital information for infection control measures. Therefore, determination of AMR is important and progressing with new innovations. The conventional methods for identification involve culturing and can take a few days or weeks to complete \cite{Quick2015}. Moreover, not all species are susceptible to laboratory-based culturing \cite{Mitsuhashi2017}. Therefore, DNA-sequencing technology is used to reduce the sample-to-result time. Illumina sequencing is the most common sequencing method, but has difficulties identifying repetitive insertion sequences usually found flanking the horizontally acquired genes often associated with AMR \cite{Ashton2014}. Furthermore, the structure of the DNA cannot be determined with short-read sequencing. Thus, the use of nanopore sequences is proposed. The disadvantage of nanopore is the high error rate, but by combining short- and long-read sequencing methods, the strengths of both techniques can help overcome these problems.
-
 Due to the large amount of data, created by nanopore and Illumina next generation sequencing (NGS), DNA assembly is a complex, difficult to reproduce and computationally intensive process. Hence, NGS sequence data must be processed by refined work-flows which can requisite bioinformatics skills \cite{Hemlata2016}. Each step of the analysis may require a set of different tools or software. For example, de novo assembly is done through alignment, assembly and polishing tools which all require multiple parameters. Minimap2 designed for pairwise alignment, cannot be used as standalone for de novo assembly, therefore miniasm and racon are also used. This makes it more complex as they are command-line tools which require extensive computational resources. 
 
 The Galaxy platform implements a user-friendly interface to accommodate command-line tools with their dependencies and refined work-flows needed for assembly of NGS data. This empowers researchers to do powerful analysis without the need for programming experience. Galaxy offers a wide range of tools for over 125 subjects. It has over 7000 citations, and with more than 7200 tools it is widely used in the biological science community \cite{Galaxycitations, Galaxytoolshed}. NanoGalaxy integrates the NGS assembly tools for a user-friendly, but powerful platform for ultimately on-site analysis of antimicrobial resistance.
 
-
-\subsection{Results}
-
 \subsubsection{Tool kit and workflows}
-The incorporation of the nanopore tools in the Galaxy platform result in the tool kit, NanoGalaxy, containing diverse
-applications for the analyses of nanopore sequences (Table \ref{tab:NanoGalaxyToolkit}).
+The incorporation of the third-generation sequence tools in the Galaxy platform result in the tool kit, NanoGalaxy, containing diverse applications for the analyses of long-read sequences (Table \ref{tab:NanoGalaxyToolkit}).
 
 \begin{table}[b!]
 \caption{NanoGalaxy tool kit.}\label{tab:NanoGalaxyToolkit}
@@ -113,6 +104,13 @@ Methylation                     &            &                                  
 \bottomrule
 \end{tabularx}
 \end{table}
+
+
+\subsection{Results}
+\subsubsection{User case: Antimicrobial resistance}
+According to the World Health Organization (WHO) and the Organisation for Economic Co-operation and Development (OECD), antimicrobial resistance (AMR) has become one of the biggest threats to global health, food security and development \cite{OrganisationforEconomicCo-operationandDevelopment2017, WorldHealthOrganization2018}. The misuse of antibiotics in medical, veterinary and agricultural sectors contributes to the rise of antibiotic resistant pathogens. An increase in AMR may ultimately lead to an era where common infections could be lethal again. It is suspected that around 50.000 lives per year are lost due to AMR infections within the USA and Europe \cite{Simlai2016}. AMR infections are expected to increase, reaching 10 million deaths per year by 2050 \cite{ONeil2014}. To prevent this, AMR detection in samples (from all organisms) needs to be faster and be done at the subject's site.
+
+Detection of resistant bacteria provides vital information for infection control measures. Therefore, determination of AMR is important and progressing with new innovations. The conventional methods for identification involve culturing and can take a few days or weeks to complete \cite{Quick2015}. Moreover, not all species are susceptible to laboratory-based culturing \cite{Mitsuhashi2017}. Therefore, DNA-sequencing technology is used to reduce the sample-to-result time. Illumina sequencing is the most common sequencing method, but has difficulties identifying repetitive insertion sequences usually found flanking the horizontally acquired genes often associated with AMR \cite{Ashton2014}. Furthermore, the structure of the DNA cannot be determined with short-read sequencing. Thus, the use of nanopore sequences is proposed. The disadvantage of nanopore is the high error rate, but by combining short- and long-read sequencing methods, the strengths of both techniques can help overcome these problems.
 
 A long read assembly workflow employing minimap2 \cite{Li2018a}, miniasm \cite{Li2016} and Racon \cite{Vaser2017} is deployed including tools for further analysis. These tools consist of Staramr \cite{} for resistance gene detection, PlasFlow \cite{Krawczyk2018} and Bandage \cite{Wick2015} for species and plasmid determination and NanoPlot \cite{DeCoster2018} for quality assessment.
 
@@ -153,7 +151,8 @@ RB12                     & RB12-74T-KPC-IncF-115K-N           & 115689        & 
 \end{table}
 \end{landscape}
 
-The long read assembly workflow is a fast way to assemble genomes but lacks the ability to scan for single nucleotide polymorphisms (SNPs). This is because nanopore sequencing has a higher error rate. Therefore, a workflow processing nanopore and Illumina sequences is included to combine the best features of both sequencing methods. The workflow recommended by the Unicycler developers \cite{Wick2017} includes Trim Galore!, Porechop and Filtlong for quality trimming, Unicycler for de novo assembly, Staramr for resistance gene detection and bandage for plasmid visualization. These tools are made available in NanoGalaxy as stand-alone tools and combined in a workflow. The Assembly graphs are compared to the results from \citet{Wick2017}. The Illumina-only graphs show an unclear visualization of plasmids, where nanopore-only is able to achieve the structure of plasmids. The combination of both sequence techniques gives the clearest view of plasmids and shows the same result as shown by \citet{Wick2017} (Figure \ref{figure:WickEtAl}).
+\subsubsection{User case: Combining second- and third-generation sequencing}
+The long read assembly workflow is a fast way to assemble genomes but lacks the ability to scan for single nucleotide polymorphisms (SNPs). This is because nanopore sequencing has a higher error rate. Therefore, a workflow processing nanopore and Illumina sequences is included to combine the best features of both sequencing methods. The workflow recommended by the Unicycler developers \cite{Wick2017} includes Trim Galore!, Porechop and Filtlong for quality trimming, Unicycler for de novo assembly and bandage for plasmid visualization. These tools are made available in NanoGalaxy as stand-alone tools and combined in a workflow. The Assembly graphs are compared to the results from \citet{Wick2017}. The Illumina-only graphs show an unclear visualization of plasmids, where nanopore-only is able to achieve the structure of plasmids. The combination of both sequence techniques gives the clearest view of plasmids and shows the same result as shown by \citet{Wick2017} (Figure \ref{figure:WickEtAl}).
 
 \begin{figure}[bt!]
 \centering
